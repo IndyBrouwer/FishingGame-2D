@@ -5,7 +5,7 @@ public class ClickDetection : MonoBehaviour
 {
     [SerializeField] private PlayerFishing playerFishingScript;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && FishGame.IsFishingActive == false)
         {
@@ -13,11 +13,11 @@ public class ClickDetection : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
             //Perform 2D raycast
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            Collider2D hit = Physics2D.OverlapPoint(mousePos);
 
-            if (hit.collider != null)
+            if (hit != null)
             {
-                if (hit.collider.CompareTag("PosSwitch"))
+                if (hit.CompareTag("PosSwitch"))
                 {
                     // Switch player position to other side of island
                 }
@@ -26,6 +26,11 @@ public class ClickDetection : MonoBehaviour
                     //Start fishing
                     playerFishingScript.Fishing();
                 }
+            }
+            else
+            {
+                //If clicked in empty space start fishing
+                playerFishingScript.Fishing();
             }
         }
     }

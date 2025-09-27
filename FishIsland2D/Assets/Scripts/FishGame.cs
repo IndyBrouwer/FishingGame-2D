@@ -25,13 +25,26 @@ public class FishGame : MonoBehaviour
 
     private float targetY;
 
-    private void Start()
-    {
-        IsFishingActive = true;
+    [SerializeField] private PlayerFishing playerFishingScript;
+    [SerializeField] private PlayerBait playerBaitScript;
 
-        //Apply start position to fish and player
+    private void OnEnable()
+    {
+        // Reset progress each time the mini-game starts
+        progressSlider.value = 0;
+
+        // Reset waiting state
         isWaiting = true;
         StartCoroutine(WaitToMove());
+
+        // Reset fish + player start positions if needed
+        gameFish.anchoredPosition = new Vector2(gameFish.anchoredPosition.x, minHeight.anchoredPosition.y);
+        gamePlayer.anchoredPosition = new Vector2(gamePlayer.anchoredPosition.x, minHeight.anchoredPosition.y);
+
+        // Consume bait each time fishing starts
+        playerBaitScript.ConsumeBait();
+
+        IsFishingActive = true;
     }
 
     private void Update()
@@ -42,6 +55,8 @@ public class FishGame : MonoBehaviour
         }
         else if (progressSlider.value == progressSlider.maxValue)
         {
+            //Reset so you dont catch a fish without doing the game next time
+            progressSlider.value = 1; //Does not help, fishgame does show up now with this but the player loses as the game was still running instead of reset
             CaughtFish();
         }
 
@@ -75,8 +90,9 @@ public class FishGame : MonoBehaviour
 
     private void SetNewTarget()
     {
-        //Decide new move direction for fish
+        //Fish picks random direction within the height limits
         targetY = Random.Range(minHeight.anchoredPosition.y, maxHeight.anchoredPosition.y);
+
 
         //Pick a random speed between min and max fish speed each time fish changes direction
         fishMoveSpeed = Random.Range(fishMinSpeed, fishMaxSpeed);
@@ -121,9 +137,13 @@ public class FishGame : MonoBehaviour
 
     private void CaughtFish()
     {
-        //stop fishing game and fishing anim.
-        //Show off fish
-        //Back to default/idle mode
+        IsFishingActive = false;
+
+        //Connect back to playerFishing script
+        playerFishingScript.CaughtFish();
+
+        //Deactivate the fishGame (so OnEnable runs next time and player can keep playing)
+        gameObject.SetActive(false);
     }
 
     IEnumerator WaitToMove()

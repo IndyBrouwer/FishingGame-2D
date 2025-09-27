@@ -1,26 +1,36 @@
 using System.Collections;
 using UnityEngine;
 
+
 public class PlayerFishing : MonoBehaviour
 {
+    [Header("General Settings")]
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private GameObject bobber;
-    [SerializeField] private Transform fishingPoint;
+    [SerializeField] private Transform bobber;
+
+    [Header("Catch Timing Settings")]
+    [SerializeField] private float minCatchDelay = 2f;
+    [SerializeField] private float maxCatchDelay = 10f;
 
     private bool isFishing = false;
     private bool poleBack = false;
     private float timeTillCatch = 0f;
+    private float catchDelay;
 
 
     [SerializeField] private GameObject fishingGame;
+
+    [SerializeField] private PlayerCatched playerCatchedScript;
 
     private void FixedUpdate()
     {
         if (isFishing)
         {
+            catchDelay = Random.Range(minCatchDelay, maxCatchDelay);
+
             //Start fishing game after random time from min and max time.
             timeTillCatch += Time.deltaTime;
-            if (timeTillCatch >= 3)
+            if (timeTillCatch >= catchDelay)
             {
                 fishingGame.SetActive(true);
             }
@@ -40,18 +50,28 @@ public class PlayerFishing : MonoBehaviour
         else if (isFishing)
         {
             //Reel bobber back in
-            StopFishing();
+            CancelFishing();
         }
     }
 
-    private void StopFishing()
+    public void CancelFishing()
     {
-        Debug.Log("Stopped Fishing");
+        Debug.Log("Canceled Fishing");
 
         isFishing = false;
-        playerAnimator.SetBool("isFishing", false);
         fishingGame.SetActive(false);
+        playerAnimator.SetBool("isFishing", false);
         timeTillCatch = 0f;
+    }
+
+    public void CaughtFish()
+    {
+        isFishing = false;
+        playerAnimator.SetBool("isFishing", false);
+        playerAnimator.SetTrigger("CaughtFish");
+        timeTillCatch = 0f;
+
+        playerCatchedScript.DecideFish();
     }
 
     private IEnumerator ThrowFishingPole()
