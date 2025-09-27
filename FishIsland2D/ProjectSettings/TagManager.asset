@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - PosSwitch
+  - GameFish
+  - GamePlayer
   layers:
   - Default
   - TransparentFX
@@ -41,6 +43,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3621924555
+    locked: 0
+  - name: Land
+    uniqueID: 2899465205
+    locked: 0
+  - name: Player
+    uniqueID: 1976126505
+    locked: 0
+  - name: Water
+    uniqueID: 1123967397
     locked: 0
   m_RenderingLayers:
   - Default

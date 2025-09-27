@@ -3,25 +3,28 @@ using UnityEngine.InputSystem;
 
 public class ClickDetection : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerControlScript;
+    [SerializeField] private PlayerFishing playerFishingScript;
 
     private void FixedUpdate()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && FishGame.IsFishingActive == false)
         {
-            Ray CamRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit CamHit;
+            //Convert mouse position to world point
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(CamRay, out CamHit))
+            //Perform 2D raycast
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            if (hit.collider != null)
             {
-                if (CamHit.collider.CompareTag("PosSwitch"))
+                if (hit.collider.CompareTag("PosSwitch"))
                 {
-                    //Switch player position to other side of island
+                    // Switch player position to other side of island
                 }
                 else
                 {
                     //Start fishing
-                    playerControlScript.Fishing();
+                    playerFishingScript.Fishing();
                 }
             }
         }
