@@ -21,6 +21,10 @@ public class ClickDetection : MonoBehaviour
                 {
                     // Switch player position to other side of island
                 }
+                else if (hit.CompareTag("Button"))
+                {
+                    return;
+                }
                 else
                 {
                     //Start fishing

@@ -7,6 +7,7 @@ TagManager:
   - PosSwitch
   - GameFish
   - GamePlayer
+  - Button
   layers:
   - Default
   - TransparentFX

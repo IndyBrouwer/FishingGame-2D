@@ -12,4 +12,6 @@ public class FishData : ScriptableObject
 
     public float fishMaxSize;
     public float fishMinSize;
+
+    public float sellPrice;
 }
