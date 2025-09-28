@@ -21,6 +21,7 @@ public class PlayerFishing : MonoBehaviour
     [SerializeField] private GameObject fishingGame;
 
     [SerializeField] private PlayerCatched playerCatchedScript;
+    [SerializeField] private PlayerBait playerBaitScript;
 
     private void FixedUpdate()
     {
@@ -39,13 +40,19 @@ public class PlayerFishing : MonoBehaviour
 
     public void Fishing()
     {
-        if (!isFishing)
+        if (!isFishing && playerBaitScript.currentBaitValue > 0)
         {
             Debug.Log("Entered fishing function");
             poleBack = true;
+            isFishing = true;
             playerAnimator.SetTrigger("SwingBack");
 
             StartCoroutine(ThrowFishingPole());
+        }
+        else if (!isFishing && playerBaitScript.currentBaitValue == 0)
+        {
+            //Show text to get bait to fish
+            playerBaitScript.TellToGetBait();
         }
         else if (isFishing)
         {
@@ -81,6 +88,5 @@ public class PlayerFishing : MonoBehaviour
         poleBack = false;
 
         playerAnimator.SetBool("isFishing", true);
-        isFishing = true;
     }
 }

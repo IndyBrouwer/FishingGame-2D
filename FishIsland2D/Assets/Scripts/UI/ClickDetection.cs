@@ -4,10 +4,18 @@ using UnityEngine.InputSystem;
 public class ClickDetection : MonoBehaviour
 {
     [SerializeField] private PlayerFishing playerFishingScript;
+    [SerializeField] private GameObject IventoryMenu;
+
+    private bool inventoryIsActive = false;
 
     private void Update()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && FishGame.IsFishingActive == false)
+        if (FishGame.IsFishingActive == true)
+        {
+            return;
+        }
+
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             //Convert mouse position to world point
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());

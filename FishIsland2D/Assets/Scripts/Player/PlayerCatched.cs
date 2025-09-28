@@ -7,6 +7,8 @@ public class PlayerCatched : MonoBehaviour
     [SerializeField] private Transform caughtSlot;
     [SerializeField] private FishData[] fishPool;
 
+    [SerializeField] private InventoryPage InventoryPageScript;
+
     public void DecideFish()
     {
         //Check if I even assign fish to the list in inspector
@@ -47,10 +49,17 @@ public class PlayerCatched : MonoBehaviour
             }
         }
 
-        if (selectedFish == null) selectedFish = fishPool[0]; //fallback
+        if (selectedFish == null)
+        {
+            selectedFish = fishPool[0]; //fallback
+        }
+            
 
         SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
         caughtSlotSpriteRenderer.sprite = selectedFish.fishSprite;
+
+        //Add to inventory once
+        InventoryPageScript.AddFish(selectedFish);
 
         StartCoroutine(ShowFishTime(caughtSlotSpriteRenderer));
     }

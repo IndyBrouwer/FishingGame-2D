@@ -57,7 +57,7 @@ public class FishGame : MonoBehaviour
         {
             //Reset so you dont catch a fish without doing the game next time
             progressSlider.value = 1; //Does not help, fishgame does show up now with this but the player loses as the game was still running instead of reset
-            CaughtFish();
+            FinishedGame();
         }
 
         //Move the fish towards the target position
@@ -135,7 +135,7 @@ public class FishGame : MonoBehaviour
         gamePlayer.anchoredPosition = playerPosition;
     }
 
-    private void CaughtFish()
+    private void FinishedGame()
     {
         IsFishingActive = false;
 

@@ -1,9 +1,13 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerBait : MonoBehaviour
 {
     [SerializeField] private Slider baitSlider;
+
+    [SerializeField] private GameObject baitText;
 
     [SerializeField] private float maxBaitValue = 10f;
     [SerializeField] private float minBaitValue = 0f;
@@ -24,5 +28,17 @@ public class PlayerBait : MonoBehaviour
     {
         currentBaitValue--;
         baitSlider.value = currentBaitValue;
+    }
+
+    public void TellToGetBait()
+    {
+        baitText.SetActive(true);
+        StartCoroutine(WaitBaitMessage());
+    }
+
+    private IEnumerator WaitBaitMessage()
+    {
+        yield return new WaitForSeconds(1.5f);
+        baitText.SetActive(false);
     }
 }
