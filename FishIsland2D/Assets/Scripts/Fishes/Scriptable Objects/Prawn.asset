@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1876378e433f0642acd313dadbe1202, type: 3}
-  m_Name: Jellyfish
+  m_Name: Prawn
   m_EditorClassIdentifier: 
-  fishName: Jellyfish
+  fishName: Prawn
   fishPrefab: {fileID: 0}
-  fishSprite: {fileID: 7024546442196600503, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: Uncommon
-  catchChance: 80
-  fishMaxSize: 0
-  fishMinSize: 0
+  fishSprite: {fileID: -9053997869600105867, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
+  fishTier: Rare
+  catchChance: 60
+  fishMaxSize: 30
+  fishMinSize: 7
+  sellPrice: 50

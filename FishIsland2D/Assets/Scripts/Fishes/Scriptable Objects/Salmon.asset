@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1876378e433f0642acd313dadbe1202, type: 3}
-  m_Name: Rainbow Fish
+  m_Name: Salmon
   m_EditorClassIdentifier: 
-  fishName: Rainbow Fish
+  fishName: Salmon
   fishPrefab: {fileID: 0}
-  fishSprite: {fileID: 1934122152147869704, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: Legendary
-  catchChance: 5
-  fishMaxSize: 0
-  fishMinSize: 0
+  fishSprite: {fileID: -4558646930046117358, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
+  fishTier: Rare
+  catchChance: 60
+  fishMaxSize: 100
+  fishMinSize: 50
+  sellPrice: 50

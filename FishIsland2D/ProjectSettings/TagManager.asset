@@ -8,6 +8,7 @@ TagManager:
   - GameFish
   - GamePlayer
   - Button
+  - Inventory
   layers:
   - Default
   - TransparentFX

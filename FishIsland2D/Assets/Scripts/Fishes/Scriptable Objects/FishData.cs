@@ -7,7 +7,7 @@ public class FishData : ScriptableObject
     public GameObject fishPrefab;
     public Sprite fishSprite;
     public string fishTier; //Legendary, Epic, Rare, Uncommon, Common
-    [Range(0f, 100f)] public float catchChance = 10f; //Higher = more likely the be caught
+    [Range(0f, 100f)] public float catchChance = 10f; //Higher = more likely to be caught
 
     public float fishMaxSize;
     public float fishMinSize;

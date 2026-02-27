@@ -17,5 +17,6 @@ MonoBehaviour:
   fishSprite: {fileID: -5743633672485330703, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
   fishTier: Common
   catchChance: 100
-  fishMaxSize: 0
-  fishMinSize: 0
+  fishMaxSize: 70
+  fishMinSize: 40
+  sellPrice: 10

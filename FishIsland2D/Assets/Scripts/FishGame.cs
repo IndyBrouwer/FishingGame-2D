@@ -30,18 +30,18 @@ public class FishGame : MonoBehaviour
 
     private void OnEnable()
     {
-        // Reset progress each time the mini-game starts
+        //Reset progress each time the mini-game starts
         progressSlider.value = 0;
 
-        // Reset waiting state
+        //Reset waiting state
         isWaiting = true;
         StartCoroutine(WaitToMove());
 
-        // Reset fish + player start positions if needed
+        //Reset fish + player start positions if needed
         gameFish.anchoredPosition = new Vector2(gameFish.anchoredPosition.x, minHeight.anchoredPosition.y);
         gamePlayer.anchoredPosition = new Vector2(gamePlayer.anchoredPosition.x, minHeight.anchoredPosition.y);
 
-        // Consume bait each time fishing starts
+        //Consume bait each time fishing starts
         playerBaitScript.ConsumeBait();
 
         IsFishingActive = true;

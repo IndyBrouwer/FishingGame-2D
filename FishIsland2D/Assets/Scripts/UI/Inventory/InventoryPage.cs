@@ -18,7 +18,7 @@ public class InventoryPage : MonoBehaviour
         }
     }
 
-    public void AddFish(FishData fish)
+    public void AddFish(CaughtFish fish)
     {
         if (currentIndex < listOfItems.Count)
         {

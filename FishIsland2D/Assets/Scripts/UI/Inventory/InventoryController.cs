@@ -6,7 +6,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private GameObject InGameMenu;
     [SerializeField] private GameObject Item;
 
-    private bool inventoryIsActive = false;
+    public bool inventoryIsActive = false;
     [SerializeField] private int inventorySlots = 10;
 
     void Start()
@@ -16,6 +16,7 @@ public class InventoryController : MonoBehaviour
 
     void Update()
     {
+        //Inventory hardcoded controls
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (!inventoryIsActive)

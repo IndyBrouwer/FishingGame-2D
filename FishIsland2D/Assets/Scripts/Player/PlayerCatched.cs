@@ -8,13 +8,14 @@ public class PlayerCatched : MonoBehaviour
     [SerializeField] private FishData[] fishPool;
 
     [SerializeField] private InventoryPage InventoryPageScript;
+    [SerializeField] private CaughtFish caughtFishScript;
 
     public void DecideFish()
     {
-        //Check if I even assign fish to the list in inspector
+        //Check if I even assigned fish to the list in inspector
         if (fishPool.Length == 0)
         {
-            Debug.LogWarning("No fish in pool!");
+            Debug.LogWarning("No fish in fishpool!");
             return;
         }
 
@@ -24,7 +25,7 @@ public class PlayerCatched : MonoBehaviour
             totalChance += fish.catchChance;
         }
 
-        // Pick a random value
+        //Pick a random value
         float randomPoint = Random.value * totalChance;
 
         //Create new var to store fish that is about to be caught
@@ -51,7 +52,7 @@ public class PlayerCatched : MonoBehaviour
 
         if (selectedFish == null)
         {
-            selectedFish = fishPool[0]; //fallback
+            selectedFish = fishPool[0]; //If failed catch most common/standard fish
         }
             
 
@@ -59,7 +60,8 @@ public class PlayerCatched : MonoBehaviour
         caughtSlotSpriteRenderer.sprite = selectedFish.fishSprite;
 
         //Add to inventory once
-        InventoryPageScript.AddFish(selectedFish);
+        CaughtFish caughtFish = new CaughtFish(selectedFish);
+        InventoryPageScript.AddFish(caughtFish);
 
         StartCoroutine(ShowFishTime(caughtSlotSpriteRenderer));
     }
