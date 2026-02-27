@@ -9,8 +9,8 @@ public class FishData : ScriptableObject
     public string fishTier; //Legendary, Epic, Rare, Uncommon, Common
     [Range(0f, 100f)] public float catchChance = 10f; //Higher = more likely to be caught
 
-    public float fishMaxSize;
-    public float fishMinSize;
+    public int fishMaxSize;
+    public int fishMinSize;
 
-    public float sellPrice;
+    public int sellPrice;
 }

@@ -14,7 +14,7 @@ public class ItemSlot : MonoBehaviour
 
     private void HandleClick()
     {
-        InventoryDescription.Instance.ShowFishInfo(fishInfo);
+        InventoryDescription.Instance.ShowFishInfo(fishInfo, this);
     }
 
     public void SetFish(CaughtFish fish)
@@ -36,10 +36,5 @@ public class ItemSlot : MonoBehaviour
     public CaughtFish GetFish()
     {
         return fishInfo;
-    }
-
-    public void OnClick()
-    {
-        InventoryDescription.Instance.ShowFishInfo(fishInfo);
     }
 }

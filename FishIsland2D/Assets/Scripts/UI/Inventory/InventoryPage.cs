@@ -7,7 +7,6 @@ public class InventoryPage : MonoBehaviour
     [SerializeField] private RectTransform contentPanel;
 
     List<ItemSlot> listOfItems = new List<ItemSlot>();
-    private int currentIndex = 0;
 
     public void CreateInventoryLayout(int slotsAmount)
     {
@@ -20,15 +19,15 @@ public class InventoryPage : MonoBehaviour
 
     public void AddFish(CaughtFish fish)
     {
-        if (currentIndex < listOfItems.Count)
+        for (int index = 0; index < listOfItems.Count; index++)
         {
-            listOfItems[currentIndex].SetFish(fish);
-            Debug.Log("Fish set in slot " + currentIndex);
-            currentIndex++;
+            if (listOfItems[index].GetFish() == null)
+            {
+                listOfItems[index].SetFish(fish);
+                return;
+            }
         }
-        else
-        {
-            Debug.Log("Inventory full!");
-        }
+
+        Debug.Log("Inventory full!");
     }
 }

@@ -54,13 +54,12 @@ public class PlayerCatched : MonoBehaviour
         {
             selectedFish = fishPool[0]; //If failed catch most common/standard fish
         }
-            
 
         SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
         caughtSlotSpriteRenderer.sprite = selectedFish.fishSprite;
 
         //Add to inventory once
-        CaughtFish caughtFish = new CaughtFish(selectedFish);
+        CaughtFish caughtFish = new(selectedFish);
         InventoryPageScript.AddFish(caughtFish);
 
         StartCoroutine(ShowFishTime(caughtSlotSpriteRenderer));
@@ -68,6 +67,8 @@ public class PlayerCatched : MonoBehaviour
 
     private IEnumerator ShowFishTime(SpriteRenderer caughtSlotSpriteRenderer)
     {
+        AudioManager.Instance.sfxManager.PlayCaughtSound();
+
         yield return new WaitForSeconds(1.5f);
 
         caughtSlotSpriteRenderer.sprite = null;
