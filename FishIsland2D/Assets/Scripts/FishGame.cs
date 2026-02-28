@@ -23,19 +23,33 @@ public class FishGame : MonoBehaviour
     [SerializeField] private float StartWaitTime = 1.5f;
     private bool isWaiting = false;
 
+    [Header("Fail Fishing Settings")]
+    private float failOnZeroTimer = 0f;
+    [SerializeField] private float failTime = 3f; //Seconds
+
     private float targetY;
+    public bool startedPlaying = false;
 
     [SerializeField] private PlayerFishing playerFishingScript;
     [SerializeField] private PlayerBait playerBaitScript;
 
     private void OnEnable()
     {
-        //Reset progress each time the mini-game starts
-        progressSlider.value = 0;
+        //Stop all coroutines to avoid old ones still running when game was reanabled quickly
+        StopAllCoroutines();
+
+        startedPlaying = false;
 
         //Reset waiting state
         isWaiting = true;
-        StartCoroutine(WaitToMove());
+
+        //Reset fail timer
+        failOnZeroTimer = 0f;
+
+        progressSlider.value = 0f;
+
+        //Reset Y target from the fish
+        targetY = minHeight.anchoredPosition.y;
 
         //Reset fish + player start positions if needed
         gameFish.anchoredPosition = new Vector2(gameFish.anchoredPosition.x, minHeight.anchoredPosition.y);
@@ -45,19 +59,24 @@ public class FishGame : MonoBehaviour
         playerBaitScript.ConsumeBait();
 
         IsFishingActive = true;
+
+        StartCoroutine(WaitToMove());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+
+        isWaiting = false;
+        startedPlaying = false;
+        failOnZeroTimer = 0f;
     }
 
     private void Update()
     {
-        if (isWaiting)
+        if (isWaiting || !startedPlaying)
         {
             return;
-        }
-        else if (progressSlider.value == progressSlider.maxValue)
-        {
-            //Reset so you dont catch a fish without doing the game next time
-            progressSlider.value = 1; //Does not help, fishgame does show up now with this but the player loses as the game was still running instead of reset
-            FinishedGame();
         }
 
         //Move the fish towards the target position
@@ -74,18 +93,44 @@ public class FishGame : MonoBehaviour
         //Connect player movement
         PlayerMovement();
 
-        //Overlap Check and handling
-        if (IsOverlapping())
+        if (startedPlaying)
         {
-            progressSlider.value += Time.deltaTime; //Increase cuz overlapping
-        }
-        else
-        {
-            progressSlider.value -= Time.deltaTime; //Decrease cuz not overlapping
-        }
+            //Overlap Check and handling
+            if (IsOverlapping())
+            {
+                progressSlider.value += Time.deltaTime; //Increase cuz overlapping
+            }
+            else
+            {
+                progressSlider.value -= Time.deltaTime; //Decrease cuz not overlapping
+            }
 
-        //Make it so the value cant be outside of the set min and max values of slider
-        progressSlider.value = Mathf.Clamp(progressSlider.value, 0, progressSlider.maxValue);
+            //Make it so the value cant be outside of the set min and max values of slider
+            progressSlider.value = Mathf.Clamp(progressSlider.value, 0, progressSlider.maxValue);
+
+            if (progressSlider.value <= 0f)
+            {
+                failOnZeroTimer += Time.deltaTime;
+
+                if (failOnZeroTimer >= failTime)
+                {
+                    Debug.Log("Failed fishing game due to slider staying at 0 too long");
+                    FailedGame();
+                    return;
+                }
+            }
+            else
+            {
+                failOnZeroTimer = 0f;
+            }
+
+            if (progressSlider.value >= progressSlider.maxValue)
+            {
+                //Reset so you dont catch a fish without doing the game next time
+                FinishedGame();
+                return;
+            }
+        }
     }
 
     private void SetNewTarget()
@@ -128,8 +173,6 @@ public class FishGame : MonoBehaviour
         {
             // Move player back down toward minHeight
             playerPosition.y = Mathf.MoveTowards(playerPosition.y, minHeight.anchoredPosition.y, playerMoveSpeed * Time.deltaTime);
-
-            
         }
 
         gamePlayer.anchoredPosition = playerPosition;
@@ -138,19 +181,61 @@ public class FishGame : MonoBehaviour
     private void FinishedGame()
     {
         IsFishingActive = false;
+        startedPlaying = false;
+        isWaiting = false;
+        failOnZeroTimer = 0f;
+
+        //Reset progress
+        progressSlider.value = 0;
+        progressSlider.value = Mathf.Clamp(progressSlider.value, 0, progressSlider.maxValue);
 
         //Connect back to playerFishing script
         playerFishingScript.CaughtFish();
 
-        //Deactivate the fishGame (so OnEnable runs next time and player can keep playing)
-        gameObject.SetActive(false);
+        //Deactivate next frame
+        StartCoroutine(DisableNextFrame());
     }
+
+    private void FailedGame()
+    {
+        IsFishingActive = false;
+        startedPlaying = false;
+        isWaiting = false;
+
+        failOnZeroTimer = 0f;
+
+        //Reset progress
+        progressSlider.value = 0;
+        progressSlider.value = Mathf.Clamp(progressSlider.value, 0, progressSlider.maxValue);
+
+        //Play fail sound
+
+        //Cancel fishing anim
+        playerFishingScript.FishingFailed();
+
+        //Deactivate next frame
+        StartCoroutine(DisableNextFrame());
+    }  
 
     IEnumerator WaitToMove()
     {
+        yield return null;
+
+        progressSlider.value = 0f;
+
         yield return new WaitForSeconds(StartWaitTime);
 
         SetNewTarget();
         isWaiting = false;
+
+        startedPlaying = true;
+
+        playerFishingScript.StartMiniGame();
+    }
+
+    private IEnumerator DisableNextFrame()
+    {
+        yield return null;
+        gameObject.SetActive(false);
     }
 }

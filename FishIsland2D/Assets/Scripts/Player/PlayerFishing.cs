@@ -12,53 +12,71 @@ public class PlayerFishing : MonoBehaviour
     [SerializeField] private float minCatchDelay = 2f;
     [SerializeField] private float maxCatchDelay = 10f;
 
-    private bool isFishing = false;
-    private bool poleBack = false;
+    private bool isFishing = false; //animation related
+    private bool isWaitingForBite = false; //timing logic related
+    private bool isInMinigame = false; //Avoid fish sessions from carrying things over
+
     private float timeTillCatch = 0f;
     private float catchDelay;
 
 
     [SerializeField] private GameObject fishingGame;
 
+    [Header("Other Scripts")]
     [SerializeField] private PlayerCatched playerCatchedScript;
     [SerializeField] private PlayerBait playerBaitScript;
 
-    private void FixedUpdate()
+    public void Fishing()
     {
-        if (isFishing)
+        if (!isFishing)
         {
+            if (playerBaitScript.currentBaitValue <= 0)
+            {
+                playerBaitScript.TellToGetBait();
+                return;
+            }
+
+            // Start fishing attempt
+            isFishing = true;
+            isWaitingForBite = true;
+            timeTillCatch = 0f;
+
             catchDelay = Random.Range(minCatchDelay, maxCatchDelay);
 
-            //Start fishing game after random time from min and max time.
-            timeTillCatch += Time.deltaTime;
-            if (timeTillCatch >= catchDelay)
+            StartCoroutine(ThrowFishingPole());
+        }
+        else
+        {
+            // Player wants to cancel fishing before mini-game starts
+            if (!isInMinigame)
             {
-                fishingGame.SetActive(true);
+                CancelFishing();
             }
         }
     }
 
-    public void Fishing()
+    private void FixedUpdate()
     {
-        if (!isFishing && playerBaitScript.currentBaitValue > 0)
+        //Only count down for bite if waiting and not in mini-game
+        if (isWaitingForBite && !isInMinigame)
         {
-            Debug.Log("Entered fishing function");
-            poleBack = true;
-            isFishing = true;
-            playerAnimator.SetTrigger("SwingBack");
+            timeTillCatch += Time.deltaTime;
+            if (timeTillCatch >= catchDelay)
+            {
+                //Activate mini-game
+                fishingGame.gameObject.SetActive(true);
 
-            StartCoroutine(ThrowFishingPole());
+                //PlayerFishing state
+                isWaitingForBite = false;
+                isInMinigame = true;
+                timeTillCatch = 0f;
+            }
         }
-        else if (!isFishing && playerBaitScript.currentBaitValue == 0)
-        {
-            //Show text to get bait to fish
-            playerBaitScript.TellToGetBait();
-        }
-        else if (isFishing)
-        {
-            //Reel bobber back in
-            CancelFishing();
-        }
+    }
+
+    public void StartMiniGame()
+    {
+        isInMinigame = true;
     }
 
     public void CancelFishing()
@@ -66,16 +84,31 @@ public class PlayerFishing : MonoBehaviour
         Debug.Log("Canceled Fishing");
 
         isFishing = false;
+        isWaitingForBite = false;
+        isInMinigame = false;
+
         fishingGame.SetActive(false);
         playerAnimator.SetBool("isFishing", false);
         timeTillCatch = 0f;
     }
 
-    public void CaughtFish()
+    public void FishingFailed()
     {
         isFishing = false;
+        isWaitingForBite = false;
+        isInMinigame = false;
+
         playerAnimator.SetBool("isFishing", false);
-        playerAnimator.SetTrigger("CaughtFish");
+    }
+
+    public void CaughtFish()
+    {
+        playerAnimator.SetBool("isFishing", false);
+
+        isFishing = false;
+        isWaitingForBite = false;
+        isInMinigame = false;
+
         timeTillCatch = 0f;
 
         playerCatchedScript.DecideFish();
@@ -83,10 +116,7 @@ public class PlayerFishing : MonoBehaviour
 
     private IEnumerator ThrowFishingPole()
     {
-        yield return new WaitForSeconds(2.5f);
-
-        poleBack = false;
-
+        yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("isFishing", true);
     }
 }

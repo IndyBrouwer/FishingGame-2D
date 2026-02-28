@@ -10,6 +10,8 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioClip caughtSound;
     [SerializeField] private AudioClip newFishCaughtSound;
 
+    [SerializeField] private AudioClip soldFishSound;
+
     public void PlaySFX(AudioClip soundEffect)
     {
         //Get one of the audio sources for SFX
@@ -36,5 +38,10 @@ public class SFXManager : MonoBehaviour
     public void PlayCaughtSound()
     {
         PlaySFX(caughtSound);
+    }
+
+    public void PlaySoldSound()
+    {
+        PlaySFX(soldFishSound);
     }
 }

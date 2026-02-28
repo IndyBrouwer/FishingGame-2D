@@ -75,8 +75,11 @@ public class MusicManager : MonoBehaviour
             return;
         }
 
-        musicSource.clip = currentPlaylist[currentIndex];
-        musicSource.Play();
+        if (musicSource != null)
+        {
+            musicSource.clip = currentPlaylist[currentIndex];
+            musicSource.Play();
+        }        
 
         currentIndex++;
         if (currentIndex >= currentPlaylist.Length)

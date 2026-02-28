@@ -864,6 +864,7 @@ MonoBehaviour:
   selectedSFXSource: {fileID: 0}
   caughtSound: {fileID: 8300000, guid: 568470e29bef88c4aaa027db357be957, type: 3}
   newFishCaughtSound: {fileID: 8300000, guid: d6945231be24c7240a281458fc849e1f, type: 3}
+  soldFishSound: {fileID: 8300000, guid: 6e7f23ef945c235438595e89d6332d46, type: 3}
 --- !u!1 &812362979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1513,7 @@ GameObject:
   - component: {fileID: 1284724825}
   - component: {fileID: 1284724824}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1557,7 +1558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5afb32f56968054d9df42e319b600ad, type: 2}
   m_sharedMaterial: {fileID: -7977200070880302394, guid: b5afb32f56968054d9df42e319b600ad, type: 2}
@@ -1828,7 +1829,7 @@ GameObject:
   - component: {fileID: 1636341214}
   - component: {fileID: 1636341213}
   m_Layer: 5
-  m_Name: Options Button
+  m_Name: Settings Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

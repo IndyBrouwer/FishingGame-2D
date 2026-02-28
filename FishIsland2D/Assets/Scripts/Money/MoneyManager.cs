@@ -30,6 +30,8 @@ public class MoneyManager : MonoBehaviour
     {
         currentMoney += amount;
 
+        AudioManager.Instance.sfxManager.PlaySoldSound();
+
         if (currentMoney > maxMoney)
         {
             //Cap the money amount so it doesnt trip out
