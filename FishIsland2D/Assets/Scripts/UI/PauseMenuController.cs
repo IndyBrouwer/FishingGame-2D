@@ -5,6 +5,12 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     public bool pauseMenuIsActive = false;
 
+    private void Start()
+    {
+        pauseMenu.SetActive(false);
+        pauseMenuIsActive = false;
+    }
+
     void Update()
     {
         //Pause Menu hardcoded controls

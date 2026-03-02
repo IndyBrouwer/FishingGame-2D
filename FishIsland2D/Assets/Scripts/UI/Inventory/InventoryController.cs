@@ -7,7 +7,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private GameObject Item;
 
     public bool inventoryIsActive = false;
-    [SerializeField] private int inventorySlots = 10;
+    [SerializeField] private int inventorySlots = 16;
 
     void Start()
     {

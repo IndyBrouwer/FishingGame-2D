@@ -8,6 +8,20 @@ public class InventoryPage : MonoBehaviour
 
     List<ItemSlot> listOfItems = new List<ItemSlot>();
 
+    public bool inventoryFull = false;
+
+    public bool InventoryIsFull()
+    {
+        for (int index = 0; index < listOfItems.Count; index++)
+        {
+            if (listOfItems[index].GetFish() == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void CreateInventoryLayout(int slotsAmount)
     {
         for (int index = 0; index < slotsAmount; index++)
@@ -24,6 +38,14 @@ public class InventoryPage : MonoBehaviour
             if (listOfItems[index].GetFish() == null)
             {
                 listOfItems[index].SetFish(fish);
+
+                //Check if the inventory is full after adding the fish
+                if (InventoryIsFull())
+                {
+                    inventoryFull = true;
+                    Debug.Log("Inventory is now full!");
+                }
+
                 return;
             }
         }

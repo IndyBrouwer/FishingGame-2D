@@ -1,14 +1,18 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ClickDetection : MonoBehaviour
 {
+    [Header("Script References")]
     [SerializeField] private PlayerFishing playerFishingScript;
     [SerializeField] private InventoryController inventoryControllerScript;
+    [SerializeField] private InventoryPage inventoryPageScript;
 
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private TextMeshProUGUI notifyText;
 
     private void Update()
     {
@@ -52,14 +56,32 @@ public class ClickDetection : MonoBehaviour
             }
             else
             {
-                //Start fishing
-                playerFishingScript.Fishing();
+                if (inventoryPageScript.inventoryFull == true)
+                {
+                    //Show text inventory full
+                    notifyText.gameObject.SetActive(true);
+                    notifyText.text = "Your inventory is full!";
+                }
+                else
+                {
+                    //Start fishing
+                    playerFishingScript.Fishing();
+                }
             }
         }
         else
         {
-            //If clicked in empty space start fishing
-            playerFishingScript.Fishing();
+            if (inventoryPageScript.inventoryFull == true)
+            {
+                //Show text inventory full
+                notifyText.gameObject.SetActive(true);
+                notifyText.text = "Your inventory is full!";
+            }
+            else
+            {
+                //If clicked in empty space start fishing
+                playerFishingScript.Fishing();
+            }
         }
     }
 }

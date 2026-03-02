@@ -7,7 +7,7 @@ public class PlayerBait : MonoBehaviour
 {
     [SerializeField] private Slider baitSlider;
 
-    [SerializeField] private GameObject baitText;
+    [SerializeField] private TextMeshProUGUI baitText;
 
     [SerializeField] private float maxBaitValue = 10f;
     [SerializeField] private float minBaitValue = 0f;
@@ -32,13 +32,16 @@ public class PlayerBait : MonoBehaviour
 
     public void TellToGetBait()
     {
-        baitText.SetActive(true);
+        baitText.gameObject.SetActive(true);
+
+        baitText.text = "You need bait to fish!";
+
         StartCoroutine(WaitBaitMessage());
     }
 
     private IEnumerator WaitBaitMessage()
     {
         yield return new WaitForSeconds(1.5f);
-        baitText.SetActive(false);
+        baitText.gameObject.SetActive(false);
     }
 }
