@@ -40,4 +40,10 @@ public class SaveManager : MonoBehaviour
             return;
         }
     }
+
+    public void DeleteSaveData()
+    {
+        PlayerPrefs.DeleteKey("inventory");
+        PlayerPrefs.Save();
+    }
 }

@@ -130,7 +130,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 48
         width: 64
         height: 16
       alignment: 0
@@ -152,6 +152,28 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 32
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2815e5e90c5437f4f9710c02b48f6cdd
+      internalID: 406351202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 16x64 Standard Buttons - Purple_2
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 16
         width: 64
         height: 16
@@ -163,8 +185,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e675e5cbe0f4d00459e5df26b10a6bf5
-      internalID: 177646802
+      spriteID: 8b87136e31667fb44b35c4d83c0847f3
+      internalID: -568910340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 16x64 Standard Buttons - Purple_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ba95438e4501d4d9b15203ecb4fde6
+      internalID: 1896228886
       vertices: []
       indices: 
       edges: []
@@ -173,7 +217,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c2c57b9213237d9409d8b384b4ed53bd
+    spriteID: 425c876a3ea780145b65035ee9115bad
     internalID: 0
     vertices: []
     indices: 
@@ -184,7 +228,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       16x64 Standard Buttons - Purple_0: 1751295670407952906
-      16x64 Standard Buttons - Purple_1: 177646802
+      16x64 Standard Buttons - Purple_1: 406351202
+      16x64 Standard Buttons - Purple_2: -568910340
+      16x64 Standard Buttons - Purple_3: 1896228886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

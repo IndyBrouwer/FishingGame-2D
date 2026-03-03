@@ -53,6 +53,11 @@ public class InventoryPage : MonoBehaviour
         Debug.Log("Inventory full!");
     }
 
+    public List<ItemSlot> GetSlots()
+    {
+        return listOfItems;
+    }
+
     public string SaveInventory()
     {
         InventorySaveData saveData = new InventorySaveData();
