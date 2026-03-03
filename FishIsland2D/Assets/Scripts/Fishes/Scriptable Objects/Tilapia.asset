@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tilapia
   m_EditorClassIdentifier: 
   fishName: Tilapia
+  fishID: tilapia
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: 5281840713466404809, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
   fishTier: Uncommon

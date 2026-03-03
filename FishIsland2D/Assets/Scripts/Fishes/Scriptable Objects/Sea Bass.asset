@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sea Bass
   m_EditorClassIdentifier: 
   fishName: Sea Bass
+  fishID: sea_bass
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: -5743633672485330703, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
   fishTier: Common

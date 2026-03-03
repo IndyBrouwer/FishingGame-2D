@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CatFish
   m_EditorClassIdentifier: 
   fishName: Catfish
+  fishID: cat_fish
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: -6003861320040794321, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
   fishTier: Rare

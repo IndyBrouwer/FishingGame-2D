@@ -61,6 +61,7 @@ public class PlayerCatched : MonoBehaviour
         //Add to inventory once
         CaughtFish caughtFish = new(selectedFish);
         InventoryPageScript.AddFish(caughtFish);
+        SaveManager.Instance.SaveGame();
 
         StartCoroutine(ShowFishTime(caughtSlotSpriteRenderer));
     }

@@ -1312,8 +1312,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2131845134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1574,6 +1574,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139750807}
   m_CullTransparentMesh: 1
+--- !u!1 &152129670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152129671}
+  - component: {fileID: 152129672}
+  - component: {fileID: 152129673}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &152129671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152129670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1046.096, y: 563.72577, z: 0.94103074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152129672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152129670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97abe5309d0e80d408adbe674568c72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPageScript: {fileID: 501192420}
+--- !u!114 &152129673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152129670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb11eb53658bda499873b2968ab606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allFish:
+  - {fileID: 11400000, guid: 7add072d8b820fa4d9ce4620c9ffbf12, type: 2}
+  - {fileID: 11400000, guid: cc3bd7799c3dbad42b7702469f1c049d, type: 2}
+  - {fileID: 11400000, guid: 008992a04c9fe2a4d9669e6b8cc7f981, type: 2}
+  - {fileID: 11400000, guid: 1ea5dc424dde1c047b7b8b1b23d8da49, type: 2}
+  - {fileID: 11400000, guid: 5faec051870b269488700fb923ff33da, type: 2}
+  - {fileID: 11400000, guid: af58d1c168fb9cc4098e51199d14a576, type: 2}
+  - {fileID: 11400000, guid: 7f201277a423df248826579a2fac9b15, type: 2}
+  - {fileID: 11400000, guid: c1673aa2e61829a4d949e72a951f83ad, type: 2}
+  - {fileID: 11400000, guid: 5891ca20c8396ab4f8e844f8d266c728, type: 2}
+  - {fileID: 11400000, guid: 92d23b796fd3f014f89f19b3c63bf14a, type: 2}
+  - {fileID: 11400000, guid: 16aa5e5b77f47d74393c3b4a55195240, type: 2}
 --- !u!1 &155845667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,7 +2060,7 @@ RectTransform:
   m_Father: {fileID: 124311795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3441,7 +3511,7 @@ GameObject:
   - component: {fileID: 351334369}
   - component: {fileID: 351334368}
   m_Layer: 5
-  m_Name: Quit Text
+  m_Name: Save & Quit Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3486,7 +3556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Save & Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 196a5b6fba9bf414395608a770a505b1, type: 2}
   m_sharedMaterial: {fileID: -8366632762607178093, guid: 196a5b6fba9bf414395608a770a505b1, type: 2}
@@ -7789,7 +7859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &775225591
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8610,7 +8680,7 @@ RectTransform:
   m_Father: {fileID: 46072386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.95412844}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9595,7 +9665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 307.8777, y: -58.006775}
+  m_AnchoredPosition: {x: 307.8777, y: -58.006836}
   m_SizeDelta: {x: 615.7554, y: 116.01355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1203261465
@@ -10029,8 +10099,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 983427675}
   m_HandleRect: {fileID: 983427674}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.95412844
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10966,8 +11036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775c2828865e2984ea0a1fae85935dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoney: 0
   moneyText: {fileID: 556861861}
+  currentMoney: 0
 --- !u!4 &1444983206
 Transform:
   m_ObjectHideFlags: 0
@@ -11162,8 +11232,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2026736391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12017,7 +12087,7 @@ RectTransform:
   m_Father: {fileID: 198539004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13323,7 +13393,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nInventory\t\t\t\tTAB\n\nSettings\t\t\t\tESC\n\nFish\t\t\t\t\tRMB"
+  m_text: "\nInventory\t\t\t\tTAB\n\nSettings\t\t\t\tESC\n\nFish\t\t\t\t\tLMB"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 89b39598fd5747b4e82cb8952b46d05f, type: 2}
   m_sharedMaterial: {fileID: 5656783774357413184, guid: 89b39598fd5747b4e82cb8952b46d05f, type: 2}
@@ -13618,7 +13688,7 @@ GameObject:
   - component: {fileID: 2064485620}
   - component: {fileID: 2064485619}
   m_Layer: 5
-  m_Name: Quit Button
+  m_Name: Save & Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13994,6 +14064,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 51601601}
+  - {fileID: 152129671}
   - {fileID: 2030533413}
   - {fileID: 1454609987}
   - {fileID: 225198358}

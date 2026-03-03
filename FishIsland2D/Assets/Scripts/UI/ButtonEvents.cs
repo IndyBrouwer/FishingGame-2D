@@ -20,6 +20,8 @@ public class ButtonEvents : MonoBehaviour
 
     public void QuitGame()
     {
+        SaveManager.Instance.SaveGame();
+
         #if UNITY_WEBGL
                         // For WebGL builds, just show a message or redirect to a main menu.
                         Debug.Log("Quit not supported in WebGL. Returning to main menu...");

@@ -59,6 +59,7 @@ public class InventoryDescription : MonoBehaviour
         selectedSlot = null;
 
         ClearDescription();
+        SaveManager.Instance.SaveGame();
     }
 
     private void ClearDescription()

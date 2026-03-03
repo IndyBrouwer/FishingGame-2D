@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Anchovies
   m_EditorClassIdentifier: 
   fishName: Anchovies
+  fishID: anchovies
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: 6868888007173046383, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
   fishTier: Common

@@ -5,8 +5,8 @@ public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance;
 
-    [SerializeField] private int currentMoney = 0;
     [SerializeField] private TextMeshProUGUI moneyText;
+    public int currentMoney = 0;
 
     private int maxMoney = 9999;
 
@@ -49,6 +49,7 @@ public class MoneyManager : MonoBehaviour
         }
 
         currentMoney -= amount;
+
         UpdateMoneyUI();
 
         return true;
@@ -62,5 +63,10 @@ public class MoneyManager : MonoBehaviour
     public int GetMoney()
     {
         return currentMoney;
+    }
+
+    public void SetMoney(int amount)
+    {
+        currentMoney = amount;
     }
 }

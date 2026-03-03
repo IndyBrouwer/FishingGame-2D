@@ -9,7 +9,7 @@ public class InventoryController : MonoBehaviour
     public bool inventoryIsActive = false;
     [SerializeField] private int inventorySlots = 16;
 
-    void Start()
+    private void Awake()
     {
         inventoryPageScript.CreateInventoryLayout(inventorySlots);
     }

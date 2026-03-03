@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Jellyfish
   m_EditorClassIdentifier: 
   fishName: Jellyfish
+  fishID: jellyfish
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: 7024546442196600503, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
   fishTier: Uncommon

@@ -4,6 +4,7 @@ using UnityEngine;
 public class FishData : ScriptableObject
 {
     public string fishName;
+    public string fishID; //No spaces and no uppercase!
     public GameObject fishPrefab;
     public Sprite fishSprite;
     public string fishTier; //Legendary, Epic, Rare, Uncommon, Common
