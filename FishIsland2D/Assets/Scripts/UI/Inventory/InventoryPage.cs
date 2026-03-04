@@ -6,6 +6,8 @@ public class InventoryPage : MonoBehaviour
     [SerializeField] private ItemSlot ItemSlotScript;
     [SerializeField] private RectTransform contentPanel;
 
+    [SerializeField] private PlayerBait playerBaitScript;
+
     List<ItemSlot> listOfItems = new List<ItemSlot>();
 
     public bool inventoryFull = false;
@@ -43,6 +45,7 @@ public class InventoryPage : MonoBehaviour
                 if (InventoryIsFull())
                 {
                     inventoryFull = true;
+
                     Debug.Log("Inventory is now full!");
                 }
 
@@ -51,11 +54,6 @@ public class InventoryPage : MonoBehaviour
         }
 
         Debug.Log("Inventory full!");
-    }
-
-    public List<ItemSlot> GetSlots()
-    {
-        return listOfItems;
     }
 
     public string SaveInventory()
@@ -88,6 +86,9 @@ public class InventoryPage : MonoBehaviour
         //Save money
         saveData.money = MoneyManager.Instance.currentMoney;
 
+        //Save bait
+        saveData.bait = playerBaitScript.currentBaitValue;
+
         return JsonUtility.ToJson(saveData);
     }
 
@@ -97,6 +98,9 @@ public class InventoryPage : MonoBehaviour
 
         //Load Money
         MoneyManager.Instance.SetMoney(saveData.money);
+
+        //Load Bait
+        playerBaitScript.SetBait(saveData.bait);
 
         //Only count slots with fish
         int count = Mathf.Min(listOfItems.Count, saveData.fishes.Count);

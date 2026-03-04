@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 10089026}
   - component: {fileID: 10089027}
   - component: {fileID: 10089028}
-  - component: {fileID: 10089029}
   - component: {fileID: 10089030}
+  - component: {fileID: 10089031}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baitSlider: {fileID: 990393139}
+  baitFillImage: {fileID: 917818095}
   baitText: {fileID: 60993024}
   maxBaitValue: 10
   minBaitValue: 0
@@ -348,7 +349,28 @@ MonoBehaviour:
   caughtFishScript:
     data: {fileID: 0}
     size: 0
---- !u!114 &10089029
+--- !u!114 &10089030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10089020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3766d87595b4a40ba81e90cf0f0bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caughtSlot: {fileID: 517617911}
+  clearCaughtSlotDelay: 2.5
+  inventoryControllerScript: {fileID: 10089031}
+  defaultIcon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  fishIcon: {fileID: 1207076768}
+  nameText: {fileID: 10611506}
+  sizeText: {fileID: 468821550}
+  rarityText: {fileID: 67255154}
+  valueText: {fileID: 1155372695}
+--- !u!114 &10089031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,24 +387,6 @@ MonoBehaviour:
   Item: {fileID: 7195757906760926585, guid: bd24ecad585c25440b39f52aa90800a8, type: 3}
   inventoryIsActive: 0
   inventorySlots: 32
---- !u!114 &10089030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10089020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3766d87595b4a40ba81e90cf0f0bb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultIcon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  fishIcon: {fileID: 1207076768}
-  nameText: {fileID: 10611506}
-  sizeText: {fileID: 468821550}
-  rarityText: {fileID: 67255154}
-  valueText: {fileID: 1155372695}
 --- !u!1 &10611504
 GameObject:
   m_ObjectHideFlags: 0
@@ -4323,6 +4327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSlotScript: {fileID: 2316913807029480022, guid: bd24ecad585c25440b39f52aa90800a8, type: 3}
   contentPanel: {fileID: 754031378}
+  playerBaitScript: {fileID: 10089027}
   inventoryFull: 0
 --- !u!1 &502920532
 GameObject:
@@ -4634,7 +4639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFishingScript: {fileID: 10089025}
-  inventoryControllerScript: {fileID: 10089029}
+  inventoryControllerScript: {fileID: 10089031}
   inventoryPageScript: {fileID: 501192420}
   settingsMenu: {fileID: 775225590}
   notifyText: {fileID: 60993024}
@@ -7679,7 +7684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1139.1794, y: 740}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &754031379
@@ -8680,7 +8685,7 @@ RectTransform:
   m_Father: {fileID: 46072386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.95412844}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10099,8 +10104,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 983427675}
   m_HandleRect: {fileID: 983427674}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.95412844
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10225,7 +10230,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1223383042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 10089030}
+        m_TargetAssemblyTypeName: InventoryDescription, Assembly-CSharp
+        m_MethodName: ShowSelectedFish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1223383042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11857,7 +11874,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 51601603}
         m_TargetAssemblyTypeName: ButtonEvents, Assembly-CSharp
-        m_MethodName: StartMenu
+        m_MethodName: BackToStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

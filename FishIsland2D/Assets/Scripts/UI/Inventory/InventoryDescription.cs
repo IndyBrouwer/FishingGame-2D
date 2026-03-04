@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,12 @@ public class InventoryDescription : MonoBehaviour
 {
     public static InventoryDescription Instance;
 
+    [SerializeField] private Transform caughtSlot;
+    [SerializeField] private float clearCaughtSlotDelay = 2.5f;
+
+    [SerializeField] private InventoryController inventoryControllerScript;
+
+    [Header("Inventory UI Elements")]
     public Sprite defaultIcon;
     public Image fishIcon;
     public TextMeshProUGUI nameText;
@@ -25,6 +32,7 @@ public class InventoryDescription : MonoBehaviour
     {
         if (fish == null)
         {
+            ClearDescription();
             return;
         }
 
@@ -40,6 +48,26 @@ public class InventoryDescription : MonoBehaviour
         rarityText.text = fish.data.fishTier;
         
         valueText.text = $"{fish.data.sellPrice}";
+    }
+
+    public void ShowSelectedFish()
+    {
+        if (selectedFish == null)
+        {
+            return;
+        }
+
+        //Close inventory so the player can see the caught fish in the caught slot
+        inventoryControllerScript.DisableInventory();
+
+        SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
+        caughtSlotSpriteRenderer.sprite = fishIcon.sprite;
+
+        //Play sound effect for showing the fish
+        AudioManager.Instance.sfxManager.PlayShowFishSound();
+
+        //Wait time before clearing the caught slot
+        StartCoroutine(WaitAndClearCaughtSlot());
     }
 
     public void SellSelectedFish()
@@ -69,5 +97,13 @@ public class InventoryDescription : MonoBehaviour
         rarityText.text = "";
         valueText.text = "";
         fishIcon.sprite = defaultIcon;
+    }
+
+    IEnumerator WaitAndClearCaughtSlot()
+    {
+        yield return new WaitForSeconds(clearCaughtSlotDelay);
+
+        SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
+        caughtSlotSpriteRenderer.sprite = defaultIcon;
     }
 }

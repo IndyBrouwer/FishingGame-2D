@@ -31,4 +31,10 @@ public class InventoryController : MonoBehaviour
             }
         }
     }
+
+    public void DisableInventory()
+    {
+        inventoryIsActive = false;
+        InGameMenu.SetActive(false);
+    }
 }

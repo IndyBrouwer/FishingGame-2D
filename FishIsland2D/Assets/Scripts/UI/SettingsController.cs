@@ -62,6 +62,8 @@ public class SettingsController : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.sfxManager.PlayWarningSound();
+
             warningTitle.SetActive(false);
             warningButtons.SetActive(false);
 

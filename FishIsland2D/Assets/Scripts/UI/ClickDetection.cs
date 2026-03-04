@@ -58,6 +58,8 @@ public class ClickDetection : MonoBehaviour
             {
                 if (inventoryPageScript.inventoryFull == true)
                 {
+                    AudioManager.Instance.sfxManager.PlayWarningSound();
+
                     //Show text inventory full
                     notifyText.gameObject.SetActive(true);
                     notifyText.text = "Your inventory is full!";

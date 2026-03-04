@@ -8,12 +8,19 @@ public class ButtonEvents : MonoBehaviour
         SceneManager.LoadScene("Start");
     }
 
+    public void BackToStart()
+    {
+        SaveManager.Instance.SaveGame();
+
+        SceneManager.LoadScene("Start");
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Game");
     }
 
-    public void Options()
+    public void Settings()
     {
         SceneManager.LoadScene("Settings");
     }

@@ -3069,9 +3069,12 @@ MonoBehaviour:
   - {fileID: 80540764}
   - {fileID: 895835340}
   selectedSFXSource: {fileID: 0}
+  splashSound: {fileID: 8300000, guid: 04629177c92893649afdba94b228cbac, type: 3}
   caughtSound: {fileID: 8300000, guid: 568470e29bef88c4aaa027db357be957, type: 3}
   newFishCaughtSound: {fileID: 8300000, guid: d6945231be24c7240a281458fc849e1f, type: 3}
   soldFishSound: {fileID: 8300000, guid: 6e7f23ef945c235438595e89d6332d46, type: 3}
+  showFishSound: {fileID: 8300000, guid: 973cbfce50fc9634b8c2729624d4cc4d, type: 3}
+  warningSound: {fileID: 8300000, guid: 40640820edc3c9f4185d13ea900b4757, type: 3}
 --- !u!1 &812362979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,7 +3697,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4144,7 +4147,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1527561643}
         m_TargetAssemblyTypeName: ButtonEvents, Assembly-CSharp
-        m_MethodName: Options
+        m_MethodName: Settings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

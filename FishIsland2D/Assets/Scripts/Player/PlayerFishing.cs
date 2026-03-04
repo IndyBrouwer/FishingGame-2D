@@ -63,13 +63,16 @@ public class PlayerFishing : MonoBehaviour
             timeTillCatch += Time.deltaTime;
             if (timeTillCatch >= catchDelay)
             {
-                //Activate mini-game
-                fishingGame.gameObject.SetActive(true);
+                //Play fishbite/splashing sound
+                AudioManager.Instance.sfxManager.PlaySplashSound();
 
                 //PlayerFishing state
                 isWaitingForBite = false;
                 isInMinigame = true;
                 timeTillCatch = 0f;
+
+                //Activate mini-game
+                fishingGame.gameObject.SetActive(true);
             }
         }
     }

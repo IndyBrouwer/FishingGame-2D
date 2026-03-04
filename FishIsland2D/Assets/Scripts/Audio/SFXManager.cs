@@ -7,10 +7,17 @@ public class SFXManager : MonoBehaviour
     public AudioSource selectedSFXSource;
     private int nextIndex = 0;
 
+    [Header("Fishing SFX")]
+    [SerializeField] private AudioClip splashSound;
     [SerializeField] private AudioClip caughtSound;
     [SerializeField] private AudioClip newFishCaughtSound;
 
+    [Header("Inventory Buttons SFX")]
     [SerializeField] private AudioClip soldFishSound;
+    [SerializeField] private AudioClip showFishSound;
+
+    [Header("UI SFX")]
+    [SerializeField] private AudioClip warningSound;
 
     public void PlaySFX(AudioClip soundEffect)
     {
@@ -43,5 +50,20 @@ public class SFXManager : MonoBehaviour
     public void PlaySoldSound()
     {
         PlaySFX(soldFishSound);
+    }
+
+    public void PlayShowFishSound()
+    {
+        PlaySFX(showFishSound);
+    }
+
+    public void PlayWarningSound()
+    {
+        PlaySFX(warningSound);
+    }
+
+    public void PlaySplashSound()
+    {
+        PlaySFX(splashSound);
     }
 }
