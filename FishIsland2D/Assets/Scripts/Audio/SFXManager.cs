@@ -11,6 +11,7 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioClip splashSound;
     [SerializeField] private AudioClip caughtSound;
     [SerializeField] private AudioClip newFishCaughtSound;
+    [SerializeField] private AudioClip failedCatchSound;
 
     [Header("Inventory Buttons SFX")]
     [SerializeField] private AudioClip soldFishSound;
@@ -65,5 +66,10 @@ public class SFXManager : MonoBehaviour
     public void PlaySplashSound()
     {
         PlaySFX(splashSound);
+    }
+
+    public void PlayFailedCatchSound()
+    {
+        PlaySFX(failedCatchSound);
     }
 }

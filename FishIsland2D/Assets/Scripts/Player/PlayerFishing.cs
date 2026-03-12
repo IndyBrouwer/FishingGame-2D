@@ -12,8 +12,8 @@ public class PlayerFishing : MonoBehaviour
     [SerializeField] private float minCatchDelay = 2f;
     [SerializeField] private float maxCatchDelay = 10f;
 
-    private bool isFishing = false; //animation related
-    private bool isWaitingForBite = false; //timing logic related
+    private bool isFishing = false; //Animation related
+    private bool isWaitingForBite = false; //Timing logic related
     private bool isInMinigame = false; //Avoid fish sessions from carrying things over
 
     private float timeTillCatch = 0f;
@@ -36,7 +36,7 @@ public class PlayerFishing : MonoBehaviour
                 return;
             }
 
-            // Start fishing attempt
+            //Start fishing attempt
             isFishing = true;
             isWaitingForBite = true;
             timeTillCatch = 0f;
@@ -47,7 +47,7 @@ public class PlayerFishing : MonoBehaviour
         }
         else
         {
-            // Player wants to cancel fishing before mini-game starts
+            //Player wants to cancel fishing before mini-game starts
             if (!isInMinigame)
             {
                 CancelFishing();
@@ -114,11 +114,16 @@ public class PlayerFishing : MonoBehaviour
 
         timeTillCatch = 0f;
 
+        //Play Catch anim
+        //playerAnimator.SetTrigger("CaughtFish");
+
         playerCatchedScript.DecideFish();
     }
 
     private IEnumerator ThrowFishingPole()
     {
+        playerAnimator.SetTrigger("ThrowRod");
+
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("isFishing", true);
     }

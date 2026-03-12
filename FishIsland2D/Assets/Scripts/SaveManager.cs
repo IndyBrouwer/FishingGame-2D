@@ -37,7 +37,12 @@ public class SaveManager : MonoBehaviour
         else
         {
             Debug.Log("No save found");
-            return;
+
+            //Do whatever it does change on load/save for empty slots
+            SaveGame();
+
+            //Load again to update the inventory but now with the correct slot colors
+            LoadGame();
         }
     }
 

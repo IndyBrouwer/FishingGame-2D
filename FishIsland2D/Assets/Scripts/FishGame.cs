@@ -30,6 +30,7 @@ public class FishGame : MonoBehaviour
     private float targetY;
     public bool startedPlaying = false;
 
+    [Header("Other Scripts")]
     [SerializeField] private PlayerFishing playerFishingScript;
     [SerializeField] private PlayerBait playerBaitScript;
 
@@ -209,6 +210,7 @@ public class FishGame : MonoBehaviour
         progressSlider.value = Mathf.Clamp(progressSlider.value, 0, progressSlider.maxValue);
 
         //Play fail sound
+        AudioManager.Instance.sfxManager.PlayFailedCatchSound();
 
         //Cancel fishing anim
         playerFishingScript.FishingFailed();
