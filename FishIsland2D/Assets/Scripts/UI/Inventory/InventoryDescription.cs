@@ -45,8 +45,8 @@ public class InventoryDescription : MonoBehaviour
 
         //F1 - Round size to 1 number after "."
         sizeText.text = fish.size.ToString("F1") + " cm";
-        rarityText.text = fish.data.fishTier;
-        
+        rarityText.text = fish.data.fishTier.ToString();
+
         valueText.text = $"{fish.data.sellPrice}";
     }
 

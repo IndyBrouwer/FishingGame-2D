@@ -86,8 +86,9 @@ public class InventoryPage : MonoBehaviour
         //Save money
         saveData.money = MoneyManager.Instance.currentMoney;
 
-        //Save bait
-        saveData.bait = playerBaitScript.currentBaitValue;
+        //Save bait amount and bait type
+        saveData.bait = playerBaitScript.currentBaitAmount;
+        saveData.currentBait = playerBaitScript.currentBait;
 
         return JsonUtility.ToJson(saveData);
     }
@@ -100,7 +101,7 @@ public class InventoryPage : MonoBehaviour
         MoneyManager.Instance.SetMoney(saveData.money);
 
         //Load Bait
-        playerBaitScript.SetBait(saveData.bait);
+        playerBaitScript.SetBait(saveData.bait, saveData.currentBait);
 
         //Only count slots with fish
         int count = Mathf.Min(listOfItems.Count, saveData.fishes.Count);

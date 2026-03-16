@@ -10,6 +10,9 @@ public class PlayerCatched : MonoBehaviour
     [SerializeField] private InventoryPage InventoryPageScript;
     [SerializeField] private CaughtFish caughtFishScript;
 
+    [SerializeField] private PlayerBait playerBait;
+    [SerializeField] private BaitData currentBait;
+
     public void DecideFish()
     {
         //Check if I even assigned fish to the list in inspector
@@ -22,7 +25,7 @@ public class PlayerCatched : MonoBehaviour
         float totalChance = 0f;
         foreach (var fish in fishPool)
         {
-            totalChance += fish.catchChance;
+            totalChance += GetBoostedChance(fish);
         }
 
         //Pick a random value
@@ -36,8 +39,8 @@ public class PlayerCatched : MonoBehaviour
 
         foreach (var fish in fishPool)
         {
-            //Add the current fish from the list it's catch rate to the total list
-            cumulative += fish.catchChance;
+            //Add the current fish from the list it's catch rate to the total list. Add bait boost if player has it.
+            cumulative += GetBoostedChance(fish);
 
             //Check if the random chosen point from a catch rate falls in the min and max range of the total catch rates
             if (randomPoint <= cumulative)
@@ -64,6 +67,33 @@ public class PlayerCatched : MonoBehaviour
         SaveManager.Instance.SaveGame();
 
         StartCoroutine(ShowFishTime(caughtSlotSpriteRenderer));
+    }
+
+    private float GetBoostedChance(FishData fish)
+    {
+        float chance = fish.catchChance;
+
+        if (currentBait == null)
+        {
+            return chance;
+        }
+
+        switch (fish.fishTier)
+        {
+            case FishTier.Rare:
+                chance *= playerBait.currentBait.rareMultiplier;
+                break;
+
+            case FishTier.Epic:
+                chance *= playerBait.currentBait.epicMultiplier;
+                break;
+
+            case FishTier.Legendary:
+                chance *= playerBait.currentBait.legendaryMultiplier;
+                break;
+        }
+
+        return chance;
     }
 
     private IEnumerator ShowFishTime(SpriteRenderer caughtSlotSpriteRenderer)

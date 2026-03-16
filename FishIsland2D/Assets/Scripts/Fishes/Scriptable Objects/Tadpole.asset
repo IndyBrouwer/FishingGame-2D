@@ -16,8 +16,8 @@ MonoBehaviour:
   fishID: tadpole
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: -4784925545995413635, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: Uncommon
+  fishTier: 0
   catchChance: 80
   fishMaxSize: 25
-  fishMinSize: 0
+  fishMinSize: 1
   sellPrice: 7

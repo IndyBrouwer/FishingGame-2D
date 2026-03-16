@@ -33,6 +33,7 @@ public class FishGame : MonoBehaviour
     [Header("Other Scripts")]
     [SerializeField] private PlayerFishing playerFishingScript;
     [SerializeField] private PlayerBait playerBaitScript;
+    [SerializeField] private PlayerTimeout playerTimeoutScript;
 
     private void OnEnable()
     {
@@ -66,8 +67,6 @@ public class FishGame : MonoBehaviour
 
     private void OnDisable()
     {
-        StopAllCoroutines();
-
         isWaiting = false;
         startedPlaying = false;
         failOnZeroTimer = 0f;
@@ -193,8 +192,8 @@ public class FishGame : MonoBehaviour
         //Connect back to playerFishing script
         playerFishingScript.CaughtFish();
 
-        //Deactivate next frame
-        StartCoroutine(DisableNextFrame());
+        //Enable catch timeout to prevent immediately starting another game
+        playerTimeoutScript.StartCoroutine(playerTimeoutScript.FishTimeOut());
     }
 
     private void FailedGame()
@@ -215,8 +214,8 @@ public class FishGame : MonoBehaviour
         //Cancel fishing anim
         playerFishingScript.FishingFailed();
 
-        //Deactivate next frame
-        StartCoroutine(DisableNextFrame());
+        //Enable catch timeout to prevent immediately starting another game
+        playerTimeoutScript.StartCoroutine(playerTimeoutScript.FishTimeOut());
     }  
 
     IEnumerator WaitToMove()
@@ -233,11 +232,5 @@ public class FishGame : MonoBehaviour
         startedPlaying = true;
 
         playerFishingScript.StartMiniGame();
-    }
-
-    private IEnumerator DisableNextFrame()
-    {
-        yield return null;
-        gameObject.SetActive(false);
     }
 }

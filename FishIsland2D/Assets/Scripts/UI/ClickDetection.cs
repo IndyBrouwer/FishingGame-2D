@@ -10,6 +10,7 @@ public class ClickDetection : MonoBehaviour
     [SerializeField] private PlayerFishing playerFishingScript;
     [SerializeField] private InventoryController inventoryControllerScript;
     [SerializeField] private InventoryPage inventoryPageScript;
+    [SerializeField] private PlayerTimeout playerTimeoutScript;
 
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private TextMeshProUGUI notifyText;
@@ -21,17 +22,23 @@ public class ClickDetection : MonoBehaviour
         {
             return;
         }
-        
-        //If player is already fishing, ignore
-        if (FishGame.IsFishingActive == true)
-        {
-            return;
-        }
 
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
+            //If player is already fishing, ignore
+            if (FishGame.IsFishingActive == true)
+            {
+                Debug.Log("Player is already fishing, cannot fish again.");
+                return;
+            }
+            //If player is on catch timeout, ignore
+            else if (playerTimeoutScript.HasCatchTimeout == true)
+            {
+                Debug.Log("Player is on catch timeout, cannot fish.");
+                return;
+            }
             //Check if UI was clicked
-            if (EventSystem.current.IsPointerOverGameObject())
+            else if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }

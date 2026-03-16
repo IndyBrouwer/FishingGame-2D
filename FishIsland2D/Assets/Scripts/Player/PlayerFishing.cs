@@ -30,7 +30,7 @@ public class PlayerFishing : MonoBehaviour
     {
         if (!isFishing)
         {
-            if (playerBaitScript.currentBaitValue <= 0)
+            if (playerBaitScript.currentBaitAmount <= 0)
             {
                 playerBaitScript.TellToGetBait();
                 return;
