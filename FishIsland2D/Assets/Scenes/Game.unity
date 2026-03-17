@@ -395,6 +395,7 @@ MonoBehaviour:
   inventoryIsActive: 0
   inventorySlots: 32
   pauseMenuControllerScript: {fileID: 51601602}
+  baitMenuControllerScript: {fileID: 1703884519}
 --- !u!1 &10611504
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 775225590}
   pauseMenuIsActive: 0
+  inventoryControllerScript: {fileID: 10089031}
+  baitMenuControllerScript: {fileID: 1703884519}
 --- !u!114 &51601603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8363,6 +8366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 736016759}
   - component: {fileID: 736016760}
+  - component: {fileID: 736016761}
   m_Layer: 5
   m_Name: Fish Game
   m_TagString: Untagged
@@ -8417,6 +8421,21 @@ MonoBehaviour:
   playerFishingScript: {fileID: 10089025}
   playerBaitScript: {fileID: 10089027}
   playerTimeoutScript: {fileID: 58554231}
+--- !u!114 &736016761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736016758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fbe18c11e217b41972489f2ebe81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryControllerScript: {fileID: 10089031}
+  pauseMenuControllerScript: {fileID: 51601602}
+  baitMenuControllerScript: {fileID: 1703884519}
 --- !u!1 &754031377
 GameObject:
   m_ObjectHideFlags: 0
@@ -14028,6 +14047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f28a6aecb62cb4fb4b4efce36875f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baitMenuActive: 0
+  inventoryControllerScript: {fileID: 10089031}
 --- !u!1 &1705691843
 GameObject:
   m_ObjectHideFlags: 0

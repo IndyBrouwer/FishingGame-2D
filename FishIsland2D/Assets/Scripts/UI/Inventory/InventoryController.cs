@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private int inventorySlots = 16;
 
     [SerializeField] private PauseMenuController pauseMenuControllerScript;
+    [SerializeField] private BaitMenuController baitMenuControllerScript;
 
     private void Awake()
     {
@@ -23,6 +24,12 @@ public class InventoryController : MonoBehaviour
         {
             if (!inventoryIsActive)
             {
+                //Disable bait menu if it was active
+                if (baitMenuControllerScript.baitMenuActive == true)
+                {
+                    baitMenuControllerScript.CloseBaitMenu();
+                }
+
                 inventoryIsActive = true;
                 InGameMenu.SetActive(true);
             }

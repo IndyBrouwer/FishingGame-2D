@@ -16,6 +16,6 @@ MonoBehaviour:
   baitID: premium_bait
   baitTier: Epic
   buyPrice: 150
-  rareMultiplier: 1.5
-  epicMultiplier: 2
-  legendaryMultiplier: 3
+  rareMultiplier: 2
+  epicMultiplier: 2.5
+  legendaryMultiplier: 3.5

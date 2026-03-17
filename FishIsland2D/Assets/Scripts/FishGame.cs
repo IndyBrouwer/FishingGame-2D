@@ -39,6 +39,9 @@ public class FishGame : MonoBehaviour
         //Stop all coroutines to avoid old ones still running when game was reanabled quickly
         StopAllCoroutines();
 
+        //Disable all menus while fishing game is active
+        GetComponent<DisableMenus>().DisableAllMenus();
+
         startedPlaying = false;
 
         //Reset waiting state

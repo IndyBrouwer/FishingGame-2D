@@ -5,6 +5,9 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     public bool pauseMenuIsActive = false;
 
+    [SerializeField] private InventoryController inventoryControllerScript;
+    [SerializeField] private BaitMenuController baitMenuControllerScript;
+
     private void Start()
     {
         pauseMenu.SetActive(false);
@@ -18,6 +21,10 @@ public class PauseMenuController : MonoBehaviour
         {
             if (!pauseMenuIsActive)
             {
+                //Disable inventory menu and bait menu if they were active
+                baitMenuControllerScript.CloseBaitMenu();
+                inventoryControllerScript.DisableInventory();
+
                 pauseMenuIsActive = true;
                 pauseMenu.SetActive(true);
             }
@@ -37,6 +44,10 @@ public class PauseMenuController : MonoBehaviour
 
     public void ShowThisMenu()
     {
+        //Disable inventory menu and bait menu if they were active
+        baitMenuControllerScript.CloseBaitMenu();
+        inventoryControllerScript.DisableInventory();
+
         pauseMenuIsActive = true;
         pauseMenu.SetActive(true);
     }
