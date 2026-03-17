@@ -45,8 +45,8 @@ public class SettingsController : MonoBehaviour
 
     public void DeleteSaveFile()
     {
-        if (PlayerPrefs.HasKey("inventory")) {
-
+        if (PlayerPrefs.HasKey("inventory")) 
+        {
             //Call for the deleteSaveData function
             SaveManager.Instance.DeleteSaveData();
 
