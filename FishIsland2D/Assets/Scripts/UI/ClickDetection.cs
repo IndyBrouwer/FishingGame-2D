@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,6 +15,7 @@ public class ClickDetection : MonoBehaviour
 
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private TextMeshProUGUI notifyText;
+    [SerializeField] private float notifyTextDuration = 2f;
 
     private void Update()
     {
@@ -28,13 +30,11 @@ public class ClickDetection : MonoBehaviour
             //If player is already fishing, ignore
             if (FishGame.IsFishingActive == true)
             {
-                Debug.Log("Player is already fishing, cannot fish again.");
                 return;
             }
             //If player is on catch timeout, ignore
             else if (playerTimeoutScript.HasCatchTimeout == true)
             {
-                Debug.Log("Player is on catch timeout, cannot fish.");
                 return;
             }
             //Check if UI was clicked
@@ -63,13 +63,15 @@ public class ClickDetection : MonoBehaviour
             }
             else
             {
-                if (inventoryPageScript.inventoryFull == true)
+                if (inventoryPageScript.InventoryIsFull() == true)
                 {
                     AudioManager.Instance.sfxManager.PlayWarningSound();
 
                     //Show text inventory full
                     notifyText.gameObject.SetActive(true);
                     notifyText.text = "Your inventory is full!";
+
+                    StartCoroutine(HideNotifyText());
                 }
                 else
                 {
@@ -80,11 +82,13 @@ public class ClickDetection : MonoBehaviour
         }
         else
         {
-            if (inventoryPageScript.inventoryFull == true)
+            if (inventoryPageScript.InventoryIsFull() == true)
             {
                 //Show text inventory full
                 notifyText.gameObject.SetActive(true);
                 notifyText.text = "Your inventory is full!";
+
+                StartCoroutine(HideNotifyText());
             }
             else
             {
@@ -92,5 +96,12 @@ public class ClickDetection : MonoBehaviour
                 playerFishingScript.Fishing();
             }
         }
+    }
+    
+    private IEnumerator HideNotifyText()
+    {
+        yield return new WaitForSeconds(notifyTextDuration);
+
+        notifyText.gameObject.SetActive(false);
     }
 }

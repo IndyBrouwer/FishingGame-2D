@@ -339,18 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caughtSlot: {fileID: 517617911}
-  fishPool:
-  - {fileID: 11400000, guid: 5891ca20c8396ab4f8e844f8d266c728, type: 2}
-  - {fileID: 11400000, guid: 16aa5e5b77f47d74393c3b4a55195240, type: 2}
-  - {fileID: 11400000, guid: 7add072d8b820fa4d9ce4620c9ffbf12, type: 2}
-  - {fileID: 11400000, guid: 92d23b796fd3f014f89f19b3c63bf14a, type: 2}
-  - {fileID: 11400000, guid: 1ea5dc424dde1c047b7b8b1b23d8da49, type: 2}
-  - {fileID: 11400000, guid: 5faec051870b269488700fb923ff33da, type: 2}
-  - {fileID: 11400000, guid: af58d1c168fb9cc4098e51199d14a576, type: 2}
-  - {fileID: 11400000, guid: 008992a04c9fe2a4d9669e6b8cc7f981, type: 2}
-  - {fileID: 11400000, guid: c1673aa2e61829a4d949e72a951f83ad, type: 2}
-  - {fileID: 11400000, guid: cc3bd7799c3dbad42b7702469f1c049d, type: 2}
-  - {fileID: 11400000, guid: 7f201277a423df248826579a2fac9b15, type: 2}
+  fishDatabaseScript: {fileID: 152129673}
   InventoryPageScript: {fileID: 501192420}
   caughtFishScript:
     data: {fileID: 0}

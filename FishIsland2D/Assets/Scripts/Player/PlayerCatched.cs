@@ -5,7 +5,7 @@ public class PlayerCatched : MonoBehaviour
 {
     [Header("Caught Fish Settings")]
     [SerializeField] private Transform caughtSlot;
-    [SerializeField] private FishData[] fishPool;
+    [SerializeField] private FishDatabase fishDatabaseScript;
 
     [Header("Other Scripts")]
     [SerializeField] private InventoryPage InventoryPageScript;
@@ -15,14 +15,14 @@ public class PlayerCatched : MonoBehaviour
     public void DecideFish()
     {
         //Check if I even assigned fish to the list in inspector
-        if (fishPool.Length == 0)
+        if (fishDatabaseScript.allFish.Count == 0)
         {
             Debug.LogWarning("No fish in fishpool!");
             return;
         }
 
         float totalChance = 0f;
-        foreach (var fish in fishPool)
+        foreach (var fish in fishDatabaseScript.allFish)
         {
             totalChance += GetBoostedChance(fish);
         }
@@ -36,7 +36,7 @@ public class PlayerCatched : MonoBehaviour
         //The to be total amount of all fish their catch rates
         float cumulative = 0f;
 
-        foreach (var fish in fishPool)
+        foreach (var fish in fishDatabaseScript.allFish)
         {
             //Add the current fish from the list it's catch rate to the total list. Add bait boost if player has it.
             cumulative += GetBoostedChance(fish);
@@ -54,7 +54,7 @@ public class PlayerCatched : MonoBehaviour
 
         if (selectedFish == null)
         {
-            selectedFish = fishPool[0]; //If failed catch most common/standard fish
+            selectedFish = fishDatabaseScript.allFish[0]; //If failed catch most common/standard fish
         }
 
         SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
