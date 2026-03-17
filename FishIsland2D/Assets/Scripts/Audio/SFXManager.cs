@@ -19,6 +19,9 @@ public class SFXManager : MonoBehaviour
 
     [Header("UI SFX")]
     [SerializeField] private AudioClip warningSound;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip slideSound;
 
     public void PlaySFX(AudioClip soundEffect)
     {
@@ -71,5 +74,20 @@ public class SFXManager : MonoBehaviour
     public void PlayFailedCatchSound()
     {
         PlaySFX(failedCatchSound);
+    }
+
+    public void PlayHoverSound()
+    {
+        PlaySFX(hoverSound);
+    }
+
+    public void PlayClickSound()
+    {
+        PlaySFX(clickSound);
+    }
+
+    public void PlaySlideSound()
+    {
+        PlaySFX(slideSound);
     }
 }
