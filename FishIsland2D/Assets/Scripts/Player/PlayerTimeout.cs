@@ -13,11 +13,7 @@ public class PlayerTimeout : MonoBehaviour
         //Disable fish game here so coroutine works
         FishGameObject.SetActive(false);
 
-        Debug.Log("before wait time");
-
         yield return new WaitForSeconds(2f);
-
-        Debug.Log("after wait time");
 
         HasCatchTimeout = false;
     }

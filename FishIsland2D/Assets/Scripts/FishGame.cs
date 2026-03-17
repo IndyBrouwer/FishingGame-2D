@@ -6,29 +6,28 @@ public class FishGame : MonoBehaviour
 {
     public static bool IsFishingActive = false; //When true nothing in the scene will respond except if its part of the fishing game
 
+    [Header("UI Elements")]
     [SerializeField] private RectTransform gameFish;
     [SerializeField] private RectTransform gamePlayer;
-
     [SerializeField] private Slider progressSlider;
 
+    [Header("Fishgame Movement Settings")]
     [SerializeField] private RectTransform maxHeight;
     [SerializeField] private RectTransform minHeight;
-
     [SerializeField] private float fishMoveSpeed;
     [SerializeField] private float fishMinSpeed = 50f;
     [SerializeField] private float fishMaxSpeed = 100f;
-
     [SerializeField] private float playerMoveSpeed = 100f;
+    private float targetY;
+    public bool startedPlaying = false;
 
+    [Header("Start Game Time")]
     [SerializeField] private float StartWaitTime = 1.5f;
     private bool isWaiting = false;
 
     [Header("Fail Fishing Settings")]
     private float failOnZeroTimer = 0f;
     [SerializeField] private float failTime = 3f; //Seconds
-
-    private float targetY;
-    public bool startedPlaying = false;
 
     [Header("Other Scripts")]
     [SerializeField] private PlayerFishing playerFishingScript;

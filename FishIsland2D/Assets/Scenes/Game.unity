@@ -355,8 +355,7 @@ MonoBehaviour:
   caughtFishScript:
     data: {fileID: 0}
     size: 0
-  playerBait: {fileID: 10089027}
-  currentBait: {fileID: 0}
+  playerBaitScript: {fileID: 10089027}
 --- !u!114 &10089030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8412,9 +8411,9 @@ MonoBehaviour:
   fishMinSpeed: 50
   fishMaxSpeed: 100
   playerMoveSpeed: 100
+  startedPlaying: 0
   StartWaitTime: 1.5
   failTime: 3
-  startedPlaying: 0
   playerFishingScript: {fileID: 10089025}
   playerBaitScript: {fileID: 10089027}
   playerTimeoutScript: {fileID: 58554231}
@@ -9134,7 +9133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.84, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13080,6 +13079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1444983206}
   - component: {fileID: 1444983205}
+  - component: {fileID: 1444983207}
   m_Layer: 0
   m_Name: Money Manager
   m_TagString: Untagged
@@ -13116,6 +13116,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444983207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444983204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4add85b2ab98acc498e550befceb4382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1454609983
 GameObject:
   m_ObjectHideFlags: 0
@@ -16494,11 +16506,11 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 51601601}
   - {fileID: 152129671}
+  - {fileID: 409443811}
+  - {fileID: 1444983206}
+  - {fileID: 58554232}
   - {fileID: 2030533413}
   - {fileID: 1454609987}
   - {fileID: 225198358}
   - {fileID: 89524678}
   - {fileID: 10089022}
-  - {fileID: 409443811}
-  - {fileID: 1444983206}
-  - {fileID: 58554232}

@@ -23,21 +23,6 @@ public class PlayerBait : MonoBehaviour
     public int premiumBaitAmount;
     public int currentBaitAmount;
 
-    //private void Start()
-    //{
-    //    currentBaitAmount = maxBaitValue;
-    //    currentBait = defaultBait;
-    //}
-
-    //public void IncreaseBait()
-    //{
-    //    baitSlider.value = baitSlider.maxValue;
-    //    currentBaitAmount = maxBaitValue;
-
-    //    //Make fill image fully visible
-    //    baitFillImage.color = new Color(baitFillImage.color.r, baitFillImage.color.g, baitFillImage.color.b, 1f);
-    //}
-
     public void FillDefaultBait()
     {
         currentBait = defaultBait;
@@ -47,6 +32,8 @@ public class PlayerBait : MonoBehaviour
 
         //Make fill image fully visible
         baitFillImage.color = new Color(baitFillImage.color.r, baitFillImage.color.g, baitFillImage.color.b, 1f);
+
+        UpdateUI();
     }
 
     public void FillPremiumBait()
@@ -61,11 +48,16 @@ public class PlayerBait : MonoBehaviour
 
             //Make fill image fully visible
             baitFillImage.color = new Color(baitFillImage.color.r, baitFillImage.color.g, baitFillImage.color.b, 1f);
+
+            UpdateUI();
         }
         else
         {
             //Show issue UI text that you dont have enough money to buy premium bait and make it red so its readable.
             //Show issue UI text above the current menu (as of now displayed below it)
+
+            //Warning sound
+            AudioManager.Instance.sfxManager.PlayWarningSound();
 
             return;
         }
@@ -83,24 +75,20 @@ public class PlayerBait : MonoBehaviour
 
             return;
         }
-
-        currentBaitAmount = bait;
+        
         currentBait = baitType;
+        currentBaitAmount = bait;
+
         baitSlider.value = currentBaitAmount;
+
+        UpdateUI();
 
         CheckOutOfBait();
     }
 
     public void ConsumeBait()
     {
-        if (currentBait == premiumBait)
-        {
-            currentBaitAmount--;
-        }
-        else
-        {
-            currentBaitAmount--;
-        }
+        currentBaitAmount--;
 
         UpdateUI();
 
@@ -119,8 +107,8 @@ public class PlayerBait : MonoBehaviour
             //Bait icon to gold
             baitIcon.color = new Color(1f, 0.84f, 0f);
 
-            //Bait fill image to gold and not see through
-            baitFillImage.color = new Color(1f, 0.84f, 0f);
+            //Bait fill image to orange and not see through
+            baitFillImage.color = new Color(1f, 0.52f, 0f, 1f);
         }
         else
         {
@@ -129,10 +117,8 @@ public class PlayerBait : MonoBehaviour
             //Bait icon to white (standard)
             baitIcon.color = Color.white;
 
-            //Bait fill image to pink (standard) and not see through
-            //baitFillImage.color = new Color(226, 114, 133);
-
-            baitFillImage.color = new Color(baitFillImage.color.r, baitFillImage.color.g, baitFillImage.color.b, 1f);
+            //Go back to default color and make sure its not see through
+            baitFillImage.color = new Color(0.88f, 0.45f, 0.52f, 1f);
         }
     }
 

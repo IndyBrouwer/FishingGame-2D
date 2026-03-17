@@ -7,11 +7,10 @@ public class PlayerCatched : MonoBehaviour
     [SerializeField] private Transform caughtSlot;
     [SerializeField] private FishData[] fishPool;
 
+    [Header("Other Scripts")]
     [SerializeField] private InventoryPage InventoryPageScript;
     [SerializeField] private CaughtFish caughtFishScript;
-
-    [SerializeField] private PlayerBait playerBait;
-    [SerializeField] private BaitData currentBait;
+    [SerializeField] private PlayerBait playerBaitScript;
 
     public void DecideFish()
     {
@@ -73,23 +72,26 @@ public class PlayerCatched : MonoBehaviour
     {
         float chance = fish.catchChance;
 
-        if (currentBait == null)
+        if (playerBaitScript.currentBait == null)
         {
+            Debug.Log("Player has no bait equipped, using base catch chance.");
             return chance;
         }
+
+        Debug.Log("Premium bait equipped, applying catch chance boost.");
 
         switch (fish.fishTier)
         {
             case FishTier.Rare:
-                chance *= playerBait.currentBait.rareMultiplier;
+                chance *= playerBaitScript.currentBait.rareMultiplier;
                 break;
 
             case FishTier.Epic:
-                chance *= playerBait.currentBait.epicMultiplier;
+                chance *= playerBaitScript.currentBait.epicMultiplier;
                 break;
 
             case FishTier.Legendary:
-                chance *= playerBait.currentBait.legendaryMultiplier;
+                chance *= playerBaitScript.currentBait.legendaryMultiplier;
                 break;
         }
 

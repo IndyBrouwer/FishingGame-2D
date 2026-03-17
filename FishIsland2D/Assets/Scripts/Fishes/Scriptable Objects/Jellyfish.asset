@@ -16,7 +16,7 @@ MonoBehaviour:
   fishID: jellyfish
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: 7024546442196600503, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: Uncommon
+  fishTier: 1
   catchChance: 80
   fishMaxSize: 40
   fishMinSize: 1

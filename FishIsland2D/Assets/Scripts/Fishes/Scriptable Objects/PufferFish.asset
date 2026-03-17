@@ -16,7 +16,7 @@ MonoBehaviour:
   fishID: puffer_fish
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: -8692646498737933407, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: Rare
+  fishTier: 2
   catchChance: 60
   fishMaxSize: 90
   fishMinSize: 2

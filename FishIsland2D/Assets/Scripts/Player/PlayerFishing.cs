@@ -11,15 +11,15 @@ public class PlayerFishing : MonoBehaviour
     [Header("Catch Timing Settings")]
     [SerializeField] private float minCatchDelay = 2f;
     [SerializeField] private float maxCatchDelay = 10f;
+    private float timeTillCatch = 0f;
+    private float catchDelay;
 
+    [Header("Fishing State")]
     private bool isFishing = false; //Animation related
     private bool isWaitingForBite = false; //Timing logic related
     private bool isInMinigame = false; //Avoid fish sessions from carrying things over
 
-    private float timeTillCatch = 0f;
-    private float catchDelay;
-
-
+    [Header("UI Elements")]
     [SerializeField] private GameObject fishingGame;
 
     [Header("Other Scripts")]

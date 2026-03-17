@@ -16,7 +16,7 @@ MonoBehaviour:
   fishID: tilapia
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: 5281840713466404809, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
-  fishTier: Uncommon
+  fishTier: 1
   catchChance: 80
   fishMaxSize: 30
   fishMinSize: 20
