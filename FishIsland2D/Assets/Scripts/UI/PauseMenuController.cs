@@ -9,6 +9,8 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private BaitMenuController baitMenuControllerScript;
     [SerializeField] private IndexController indexControllerScript;
 
+    [SerializeField] private InventoryDescription inventoryDescriptionScript;
+
     private void Start()
     {
         pauseMenu.SetActive(false);
@@ -18,7 +20,7 @@ public class PauseMenuController : MonoBehaviour
     void Update()
     {
         //Pause Menu hardcoded controls
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && inventoryDescriptionScript.showingFish != true)
         {
             if (!pauseMenuIsActive)
             {
@@ -46,6 +48,11 @@ public class PauseMenuController : MonoBehaviour
 
     public void ShowThisMenu()
     {
+        if (inventoryDescriptionScript.showingFish == true)
+        {
+            return;
+        }
+
         //Disable inventory menu and bait menu if they were active
         baitMenuControllerScript.CloseBaitMenu();
         inventoryControllerScript.DisableInventory();

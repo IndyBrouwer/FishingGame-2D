@@ -368,6 +368,7 @@ MonoBehaviour:
   sizeText: {fileID: 468821550}
   rarityText: {fileID: 67255154}
   valueText: {fileID: 1155372695}
+  showingFish: 0
 --- !u!114 &10089031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,6 +728,7 @@ MonoBehaviour:
   inventoryControllerScript: {fileID: 10089031}
   baitMenuControllerScript: {fileID: 1703884519}
   indexControllerScript: {fileID: 923837009}
+  inventoryDescriptionScript: {fileID: 10089030}
 --- !u!114 &51601603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6381,6 +6383,7 @@ MonoBehaviour:
   playerFishingScript: {fileID: 10089025}
   inventoryControllerScript: {fileID: 10089031}
   inventoryPageScript: {fileID: 501192420}
+  inventoryDescriptionScript: {fileID: 10089030}
   playerTimeoutScript: {fileID: 58554231}
   settingsMenu: {fileID: 775225590}
   notifyText: {fileID: 60993024}
@@ -11980,6 +11983,7 @@ MonoBehaviour:
   IndexMenuActive: 0
   inventoryControllerScript: {fileID: 10089031}
   baitMenuControllerScript: {fileID: 1703884519}
+  inventoryDescriptionScript: {fileID: 10089030}
 --- !u!114 &923837010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18508,6 +18512,7 @@ MonoBehaviour:
   baitMenuActive: 0
   inventoryControllerScript: {fileID: 10089031}
   indexControllerScript: {fileID: 923837009}
+  inventoryDescriptionScript: {fileID: 10089030}
 --- !u!1 &1705691843
 GameObject:
   m_ObjectHideFlags: 0

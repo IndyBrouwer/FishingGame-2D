@@ -11,6 +11,7 @@ public class ClickDetection : MonoBehaviour
     [SerializeField] private PlayerFishing playerFishingScript;
     [SerializeField] private InventoryController inventoryControllerScript;
     [SerializeField] private InventoryPage inventoryPageScript;
+    [SerializeField] private InventoryDescription inventoryDescriptionScript;
     [SerializeField] private PlayerTimeout playerTimeoutScript;
 
     [SerializeField] private GameObject settingsMenu;
@@ -34,6 +35,10 @@ public class ClickDetection : MonoBehaviour
             }
             //If player is on catch timeout, ignore
             else if (playerTimeoutScript.HasCatchTimeout == true)
+            {
+                return;
+            }
+            else if (inventoryDescriptionScript.showingFish == true)
             {
                 return;
             }

@@ -3,6 +3,8 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] private InventoryPage inventoryPageScript;
+    private InventoryDescription inventoryDescriptionScript;
+
     [SerializeField] private GameObject InGameMenu;
     [SerializeField] private GameObject Item;
 
@@ -16,12 +18,14 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         inventoryPageScript.CreateInventoryLayout(inventorySlots);
+
+        inventoryDescriptionScript = GetComponent<InventoryDescription>();
     }
 
     private void Update()
     {
         //Inventory hardcoded controls
-        if (Input.GetKeyDown(KeyCode.Tab) && pauseMenuControllerScript.pauseMenuIsActive != true)
+        if (Input.GetKeyDown(KeyCode.Tab) && pauseMenuControllerScript.pauseMenuIsActive != true && inventoryDescriptionScript.showingFish != true)
         {
             if (!inventoryIsActive)
             {

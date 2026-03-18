@@ -7,21 +7,30 @@ public class IndexController : MonoBehaviour
     [SerializeField] private InventoryController inventoryControllerScript;
     [SerializeField] private BaitMenuController baitMenuControllerScript;
 
+    [SerializeField] private InventoryDescription inventoryDescriptionScript;
+
     public void OpenIndexMenu()
     {
-        //Disable inventory and bait menu if they were active
-        if (inventoryControllerScript.inventoryIsActive == true)
+        if (inventoryDescriptionScript.showingFish == true)
         {
-            inventoryControllerScript.DisableInventory();
+            return;
         }
-
-        if (baitMenuControllerScript.baitMenuActive == true)
+        else
         {
-            baitMenuControllerScript.CloseBaitMenu();
-        }
+            //Disable inventory and bait menu if they were active
+            if (inventoryControllerScript.inventoryIsActive == true)
+            {
+                inventoryControllerScript.DisableInventory();
+            }
 
-        IndexMenuActive = true;
-        this.gameObject.SetActive(true);
+            if (baitMenuControllerScript.baitMenuActive == true)
+            {
+                baitMenuControllerScript.CloseBaitMenu();
+            }
+
+            IndexMenuActive = true;
+            this.gameObject.SetActive(true);
+        }
     }
 
     public void CloseIndexMenu()

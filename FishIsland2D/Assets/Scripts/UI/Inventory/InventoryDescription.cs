@@ -24,6 +24,7 @@ public class InventoryDescription : MonoBehaviour
 
     private CaughtFish selectedFish;
     private ItemSlot selectedSlot;
+    public bool showingFish = false;
 
     private void Awake()
     {
@@ -62,6 +63,9 @@ public class InventoryDescription : MonoBehaviour
         {
             //Close inventory so the player can see the caught fish in the caught slot
             inventoryControllerScript.DisableInventory();
+
+            //Set bool to true so the player can't open inventory while the caught fish is being shown in the caught slot
+            showingFish = true;
 
             //Set scale of the sprite in the caught slot based on the size of the caught fish
             float spriteScale = fishScaleHelperScript.GetSpriteScale(selectedFish);
@@ -114,6 +118,8 @@ public class InventoryDescription : MonoBehaviour
     IEnumerator WaitAndClearCaughtSlot()
     {
         yield return new WaitForSeconds(clearCaughtSlotDelay);
+
+        showingFish = false;
 
         SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
         caughtSlotSpriteRenderer.sprite = null;
