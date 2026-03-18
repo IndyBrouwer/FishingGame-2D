@@ -16,8 +16,8 @@ MonoBehaviour:
   fishID: cat_fish
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: -6003861320040794321, guid: 62f6a2e568ee855479197bed65685aec, type: 3}
-  fishTier: 2
-  catchChance: 60
+  fishTier: 3
+  catchChance: 30
   fishMaxSize: 250
   fishMinSize: 1
-  sellPrice: 25
+  sellPrice: 45

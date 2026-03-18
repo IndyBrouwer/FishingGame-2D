@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class InventoryPage : MonoBehaviour
 {
+    public static InventoryPage Instance;
+
+    public InventorySaveData currentSaveData = new InventorySaveData();
+
     [SerializeField] private ItemSlot ItemSlotScript;
     [SerializeField] private RectTransform contentPanel;
 
@@ -11,6 +15,11 @@ public class InventoryPage : MonoBehaviour
     List<ItemSlot> listOfItems = new List<ItemSlot>();
 
     public bool inventoryFull = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public bool InventoryIsFull()
     {
@@ -56,10 +65,20 @@ public class InventoryPage : MonoBehaviour
         Debug.Log("Inventory full!");
     }
 
+    public bool IsFirstCatch(string fishID)
+    {
+        if (!currentSaveData.caughtFishIDs.Contains(fishID))
+        {
+            currentSaveData.caughtFishIDs.Add(fishID);            
+
+            return true;
+        }
+        return false;
+    }
+
     public string SaveInventory()
     {
-        InventorySaveData saveData = new InventorySaveData();
-        saveData.fishes = new List<SavedFish>();
+        currentSaveData.fishes = new List<SavedFish>();
 
         foreach (var slot in listOfItems)
         {
@@ -67,7 +86,7 @@ public class InventoryPage : MonoBehaviour
 
             if (fish != null)
             {
-                saveData.fishes.Add(new SavedFish
+                currentSaveData.fishes.Add(new SavedFish
                 {
                     fishID = fish.data.fishID,
                     size = fish.size
@@ -75,7 +94,7 @@ public class InventoryPage : MonoBehaviour
             }
             else
             {
-                saveData.fishes.Add(new SavedFish
+                currentSaveData.fishes.Add(new SavedFish
                 {
                     fishID = "",
                     size = 0
@@ -84,31 +103,31 @@ public class InventoryPage : MonoBehaviour
         }
 
         //Save money
-        saveData.money = MoneyManager.Instance.currentMoney;
+        currentSaveData.money = MoneyManager.Instance.currentMoney;
 
         //Save bait amount and bait type
-        saveData.bait = playerBaitScript.currentBaitAmount;
-        saveData.currentBait = playerBaitScript.currentBait;
+        currentSaveData.bait = playerBaitScript.currentBaitAmount;
+        currentSaveData.currentBait = playerBaitScript.currentBait;
 
-        return JsonUtility.ToJson(saveData);
+        return JsonUtility.ToJson(currentSaveData);
     }
 
     public void LoadInventory(string jsonSaveData)
     {
-        InventorySaveData saveData = JsonUtility.FromJson<InventorySaveData>(jsonSaveData);
+        currentSaveData = JsonUtility.FromJson<InventorySaveData>(jsonSaveData);
 
         //Load Money
-        MoneyManager.Instance.SetMoney(saveData.money);
+        MoneyManager.Instance.SetMoney(currentSaveData.money);
 
         //Load Bait
-        playerBaitScript.SetBait(saveData.bait, saveData.currentBait);
+        playerBaitScript.SetBait(currentSaveData.bait, currentSaveData.currentBait);
 
         //Only count slots with fish
-        int count = Mathf.Min(listOfItems.Count, saveData.fishes.Count);
+        int count = Mathf.Min(listOfItems.Count, currentSaveData.fishes.Count);
 
         for (int index = 0; index < count; index++)
         {
-            var savedFish = saveData.fishes[index];
+            var savedFish = currentSaveData.fishes[index];
 
             if (savedFish == null || string.IsNullOrEmpty(savedFish.fishID))
             {

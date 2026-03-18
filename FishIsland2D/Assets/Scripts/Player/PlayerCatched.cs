@@ -57,6 +57,9 @@ public class PlayerCatched : MonoBehaviour
             selectedFish = fishDatabaseScript.allFish[0]; //If failed catch most common/standard fish
         }
 
+        //Check if fish caught is the first of its type for index
+        InventoryPage.Instance.IsFirstCatch(selectedFish.fishID);
+
         SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
         caughtSlotSpriteRenderer.sprite = selectedFish.fishSprite;
 

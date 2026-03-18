@@ -11,6 +11,7 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private PauseMenuController pauseMenuControllerScript;
     [SerializeField] private BaitMenuController baitMenuControllerScript;
+    [SerializeField] private IndexController indexControllerScript;
 
     private void Awake()
     {
@@ -24,10 +25,14 @@ public class InventoryController : MonoBehaviour
         {
             if (!inventoryIsActive)
             {
-                //Disable bait menu if it was active
+                //Disable bait and index menus if they were active
                 if (baitMenuControllerScript.baitMenuActive == true)
                 {
                     baitMenuControllerScript.CloseBaitMenu();
+                }
+                if (indexControllerScript.IndexMenuActive == true)
+                {
+                    indexControllerScript.CloseIndexMenu();
                 }
 
                 inventoryIsActive = true;

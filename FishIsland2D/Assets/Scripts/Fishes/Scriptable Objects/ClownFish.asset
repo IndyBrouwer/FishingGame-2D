@@ -16,8 +16,8 @@ MonoBehaviour:
   fishID: clown_fish
   fishPrefab: {fileID: 0}
   fishSprite: {fileID: 7490748495621928450, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: 1
-  catchChance: 80
+  fishTier: 2
+  catchChance: 50
   fishMaxSize: 17
   fishMinSize: 7
-  sellPrice: 10
+  sellPrice: 27

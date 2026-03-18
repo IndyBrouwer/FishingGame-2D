@@ -7,6 +7,7 @@ public class InventoryDescription : MonoBehaviour
 {
     public static InventoryDescription Instance;
 
+    [Header("Caught Slot Settings")]
     [SerializeField] private Transform caughtSlot;
     [SerializeField] private float clearCaughtSlotDelay = 2.5f;
 
