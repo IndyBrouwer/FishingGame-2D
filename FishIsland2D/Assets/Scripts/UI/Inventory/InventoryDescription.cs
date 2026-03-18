@@ -12,6 +12,7 @@ public class InventoryDescription : MonoBehaviour
     [SerializeField] private float clearCaughtSlotDelay = 2.5f;
 
     [SerializeField] private InventoryController inventoryControllerScript;
+    [SerializeField] private FishScaleHelper fishScaleHelperScript;
 
     [Header("Inventory UI Elements")]
     public Sprite defaultIcon;
@@ -57,18 +58,28 @@ public class InventoryDescription : MonoBehaviour
         {
             return;
         }
+        else
+        {
+            //Close inventory so the player can see the caught fish in the caught slot
+            inventoryControllerScript.DisableInventory();
 
-        //Close inventory so the player can see the caught fish in the caught slot
-        inventoryControllerScript.DisableInventory();
+            //Set scale of the sprite in the caught slot based on the size of the caught fish
+            float spriteScale = fishScaleHelperScript.GetSpriteScale(selectedFish);
 
-        SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
-        caughtSlotSpriteRenderer.sprite = fishIcon.sprite;
+            //Change scale from the sprite in the caught slot based on the set size
+            caughtSlot.localScale = new Vector3(spriteScale, spriteScale, 1f);
 
-        //Play sound effect for showing the fish
-        AudioManager.Instance.sfxManager.PlayShowFishSound();
+            SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
 
-        //Wait time before clearing the caught slot
-        StartCoroutine(WaitAndClearCaughtSlot());
+            //Set the sprite of the caught slot to the caught fish sprite
+            caughtSlotSpriteRenderer.sprite = selectedFish.data.fishSprite;
+
+            //Play sound effect for showing the fish
+            AudioManager.Instance.sfxManager.PlayShowFishSound();
+
+            //Wait time before clearing the caught slot
+            StartCoroutine(WaitAndClearCaughtSlot());
+        }
     }
 
     public void SellSelectedFish()
@@ -105,6 +116,6 @@ public class InventoryDescription : MonoBehaviour
         yield return new WaitForSeconds(clearCaughtSlotDelay);
 
         SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
-        caughtSlotSpriteRenderer.sprite = defaultIcon;
+        caughtSlotSpriteRenderer.sprite = null;
     }
 }

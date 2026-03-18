@@ -345,6 +345,7 @@ MonoBehaviour:
     data: {fileID: 0}
     size: 0
   playerBaitScript: {fileID: 10089027}
+  fishScaleHelperScript: {fileID: 58554234}
 --- !u!114 &10089030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +361,7 @@ MonoBehaviour:
   caughtSlot: {fileID: 517617911}
   clearCaughtSlotDelay: 2.5
   inventoryControllerScript: {fileID: 10089031}
+  fishScaleHelperScript: {fileID: 58554234}
   defaultIcon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   fishIcon: {fileID: 1207076768}
   nameText: {fileID: 10611506}
@@ -748,6 +750,7 @@ GameObject:
   - component: {fileID: 58554232}
   - component: {fileID: 58554231}
   - component: {fileID: 58554233}
+  - component: {fileID: 58554234}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -794,6 +797,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f51b6d09a47e9e4459093d5ca5117110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &58554234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58554230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bbaa8556b45e745837d555eab3a3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &60993022
@@ -6252,7 +6267,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 1}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

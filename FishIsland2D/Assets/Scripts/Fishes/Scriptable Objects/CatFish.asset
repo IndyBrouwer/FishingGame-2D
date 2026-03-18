@@ -19,5 +19,5 @@ MonoBehaviour:
   fishTier: 3
   catchChance: 30
   fishMaxSize: 250
-  fishMinSize: 1
+  fishMinSize: 10
   sellPrice: 45

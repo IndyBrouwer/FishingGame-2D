@@ -6,11 +6,13 @@ public class PlayerCatched : MonoBehaviour
     [Header("Caught Fish Settings")]
     [SerializeField] private Transform caughtSlot;
     [SerializeField] private FishDatabase fishDatabaseScript;
+    private FishData selectedFish;
 
     [Header("Other Scripts")]
     [SerializeField] private InventoryPage InventoryPageScript;
     [SerializeField] private CaughtFish caughtFishScript;
     [SerializeField] private PlayerBait playerBaitScript;
+    [SerializeField] private FishScaleHelper fishScaleHelperScript;
 
     public void DecideFish()
     {
@@ -30,8 +32,8 @@ public class PlayerCatched : MonoBehaviour
         //Pick a random value
         float randomPoint = Random.value * totalChance;
 
-        //Create new var to store fish that is about to be caught
-        FishData selectedFish = null;
+        //Set current fish to null, so it can be assigned to the randomly chosen fish in the loop
+        selectedFish = null;
 
         //The to be total amount of all fish their catch rates
         float cumulative = 0f;
@@ -60,12 +62,19 @@ public class PlayerCatched : MonoBehaviour
         //Check if fish caught is the first of its type for index
         InventoryPage.Instance.IsFirstCatch(selectedFish.fishID);
 
-        SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
-        caughtSlotSpriteRenderer.sprite = selectedFish.fishSprite;
-
-        //Add to inventory once
         CaughtFish caughtFish = new(selectedFish);
+
+        //Set the scale of the caught slot based on the size of the caught fish
+        CalculateScale(caughtFish);
+
+        SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
+
+        //Set the sprite of the caught slot to the caught fish sprite
+        caughtSlotSpriteRenderer.sprite = caughtFish.data.fishSprite;
+
+        //Add to inventory
         InventoryPageScript.AddFish(caughtFish);
+        
         SaveManager.Instance.SaveGame();
 
         StartCoroutine(ShowFishTime(caughtSlotSpriteRenderer));
@@ -99,6 +108,14 @@ public class PlayerCatched : MonoBehaviour
         }
 
         return chance;
+    }
+
+    private void CalculateScale(CaughtFish caughtFish)
+    {
+        float spriteScale = fishScaleHelperScript.GetSpriteScale(caughtFish);
+
+        //Change scale from the sprite in the caught slot based on the size of the caught fish
+        caughtSlot.localScale = new Vector3(spriteScale, spriteScale, 1f);
     }
 
     private IEnumerator ShowFishTime(SpriteRenderer caughtSlotSpriteRenderer)
