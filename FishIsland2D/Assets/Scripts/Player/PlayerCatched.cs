@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerCatched : MonoBehaviour
 {
     [Header("Caught Fish Settings")]
-    [SerializeField] private Transform caughtSlot;
+    public Transform caughtSlot;
     [SerializeField] private FishDatabase fishDatabaseScript;
     private FishData selectedFish;
+    SpriteRenderer caughtSlotSpriteRenderer;
 
     [Header("Other Scripts")]
     [SerializeField] private InventoryPage InventoryPageScript;
@@ -19,7 +20,6 @@ public class PlayerCatched : MonoBehaviour
         //Check if I even assigned fish to the list in inspector
         if (fishDatabaseScript.allFish.Count == 0)
         {
-            Debug.LogWarning("No fish in fishpool!");
             return;
         }
 
@@ -67,7 +67,7 @@ public class PlayerCatched : MonoBehaviour
         //Set the scale of the caught slot based on the size of the caught fish
         CalculateScale(caughtFish);
 
-        SpriteRenderer caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
+        caughtSlotSpriteRenderer = caughtSlot.GetComponent<SpriteRenderer>();
 
         //Set the sprite of the caught slot to the caught fish sprite
         caughtSlotSpriteRenderer.sprite = caughtFish.data.fishSprite;

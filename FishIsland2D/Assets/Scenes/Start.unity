@@ -3257,6 +3257,7 @@ MonoBehaviour:
   warningSound: {fileID: 8300000, guid: 40640820edc3c9f4185d13ea900b4757, type: 3}
   clickSound: {fileID: 8300000, guid: 4b803ed0be366b94d8e8fa13e51c062b, type: 3}
   hoverSound: {fileID: 8300000, guid: 973e6029e5604ed4ebd8784ad1b264ac, type: 3}
+  slideSound: {fileID: 0}
 --- !u!1 &812362979
 GameObject:
   m_ObjectHideFlags: 0

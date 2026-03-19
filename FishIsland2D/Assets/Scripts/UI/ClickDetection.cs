@@ -62,27 +62,20 @@ public class ClickDetection : MonoBehaviour
 
         if (hit != null)
         {
-            if (hit.CompareTag("PosSwitch"))
+            if (inventoryPageScript.InventoryIsFull() == true)
             {
-                // Switch player position to other side of island
+                AudioManager.Instance.sfxManager.PlayWarningSound();
+
+                //Show text inventory full
+                notifyText.gameObject.SetActive(true);
+                notifyText.text = "Your inventory is full!";
+
+                StartCoroutine(HideNotifyText());
             }
             else
             {
-                if (inventoryPageScript.InventoryIsFull() == true)
-                {
-                    AudioManager.Instance.sfxManager.PlayWarningSound();
-
-                    //Show text inventory full
-                    notifyText.gameObject.SetActive(true);
-                    notifyText.text = "Your inventory is full!";
-
-                    StartCoroutine(HideNotifyText());
-                }
-                else
-                {
-                    //Start fishing
-                    playerFishingScript.Fishing();
-                }
+                //Start fishing
+                playerFishingScript.Fishing();
             }
         }
         else

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1876378e433f0642acd313dadbe1202, type: 3}
-  m_Name: Rainbow Fish
+  m_Name: Shark
   m_EditorClassIdentifier: 
-  fishName: Rainbow Fish
-  fishID: rainbow_fish
+  fishName: Grey Reef Shark
+  fishID: grey_reef_shark
   fishPrefab: {fileID: 0}
-  fishSprite: {fileID: 1934122152147869704, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
+  fishSprite: {fileID: 7995430931294083973, guid: 316aaeb6198506544afbe1b4f04be719, type: 3}
   fishTier: 3
-  catchChance: 10
-  fishMaxSize: 20
-  fishMinSize: 7
-  sellPrice: 40
+  catchChance: 30
+  fishMaxSize: 120
+  fishMinSize: 80
+  sellPrice: 60

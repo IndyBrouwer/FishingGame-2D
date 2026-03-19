@@ -20,4 +20,4 @@ MonoBehaviour:
   catchChance: 30
   fishMaxSize: 250
   fishMinSize: 10
-  sellPrice: 45
+  sellPrice: 50

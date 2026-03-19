@@ -18,6 +18,6 @@ MonoBehaviour:
   fishSprite: {fileID: 21300000, guid: 6f06d31a7cbb66045aa02e0b5661f128, type: 3}
   fishTier: 4
   catchChance: 10
-  fishMaxSize: 300
-  fishMinSize: 250
+  fishMaxSize: 3000
+  fishMinSize: 2400
   sellPrice: 100

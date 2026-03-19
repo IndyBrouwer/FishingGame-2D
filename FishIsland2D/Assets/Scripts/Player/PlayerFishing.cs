@@ -8,11 +8,17 @@ public class PlayerFishing : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Transform bobber;
 
-    [Header("Catch Timing Settings")]
-    [SerializeField] private float minCatchDelay = 2f;
-    [SerializeField] private float maxCatchDelay = 10f;
-    private float timeTillCatch = 0f;
-    private float catchDelay;
+    [Header("Bite Timing Settings")]
+    [SerializeField] private float minBiteDelay = 2f;
+    [SerializeField] private float maxBiteDelay = 10f;
+    private float timeTillBite = 0f;
+    private float biteDelay;
+
+    [SerializeField] private float minCatchWindow = 0.5f;
+    [SerializeField] private float maxCatchWindow = 2f;
+    private float catchWindowTimer = 0f;
+    private float catchWindowDuration = 0f;
+    private bool isInCatchWindow = false;
 
     [Header("Fishing State")]
     private bool isFishing = false; //Animation related
@@ -20,6 +26,8 @@ public class PlayerFishing : MonoBehaviour
     private bool isInMinigame = false; //Avoid fish sessions from carrying things over
 
     [Header("UI Elements")]
+    private SpriteRenderer slotSprite;
+    [SerializeField] private Sprite fishBiteSprite;
     [SerializeField] private GameObject fishingGame;
 
     [Header("Other Scripts")]
@@ -39,9 +47,9 @@ public class PlayerFishing : MonoBehaviour
             //Start fishing attempt
             isFishing = true;
             isWaitingForBite = true;
-            timeTillCatch = 0f;
+            timeTillBite = 0f;
 
-            catchDelay = Random.Range(minCatchDelay, maxCatchDelay);
+            biteDelay = Random.Range(minBiteDelay, maxBiteDelay);
 
             StartCoroutine(ThrowFishingPole());
         }
@@ -55,24 +63,70 @@ public class PlayerFishing : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
+    {
+        WaitForBite();
+
+        CheckForCatch();
+    }
+
+    private void WaitForBite()
     {
         //Only count down for bite if waiting and not in mini-game
         if (isWaitingForBite && !isInMinigame)
         {
-            timeTillCatch += Time.deltaTime;
-            if (timeTillCatch >= catchDelay)
+            timeTillBite += Time.deltaTime;
+            if (timeTillBite >= biteDelay)
             {
                 //Play fishbite/splashing sound
                 AudioManager.Instance.sfxManager.PlaySplashSound();
 
                 //PlayerFishing state
                 isWaitingForBite = false;
-                isInMinigame = true;
-                timeTillCatch = 0f;
+                isInCatchWindow = true;
 
-                //Activate mini-game
-                fishingGame.gameObject.SetActive(true);
+                //Random catch window
+                catchWindowDuration = Random.Range(minCatchWindow, maxCatchWindow);
+                catchWindowTimer = 0f;
+
+                slotSprite = playerCatchedScript.caughtSlot.GetComponent<SpriteRenderer>();
+
+                //Reset scale in case a fish has been caught before, so that the exclamation mark doesn't get scaled weirdly
+                slotSprite.transform.localScale = new Vector3(1f, 1f, 1f);
+                //Change caughtslot to an exclamation mark to indicate a bite of a fish
+                slotSprite.sprite = fishBiteSprite;
+            }
+        }
+    }
+
+    private void CheckForCatch()
+    {
+        if (isInCatchWindow)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("Caught in time!");
+
+                isInCatchWindow = false;
+                catchWindowTimer = 0f;
+
+                isInMinigame = true;
+
+                StartMiniGame();
+            }
+
+            catchWindowTimer += Time.deltaTime;
+
+            if (catchWindowTimer >= catchWindowDuration)
+            {
+                Debug.Log("Missed the bite!");
+
+                slotSprite.sprite = null;
+
+                AudioManager.Instance.sfxManager.PlayFailedCatchSound();
+
+                CancelFishing();
+                return;
             }
         }
     }
@@ -80,6 +134,8 @@ public class PlayerFishing : MonoBehaviour
     public void StartMiniGame()
     {
         isInMinigame = true;
+        fishingGame.SetActive(true);
+        slotSprite.sprite = null;
     }
 
     public void CancelFishing()
@@ -89,10 +145,12 @@ public class PlayerFishing : MonoBehaviour
         isFishing = false;
         isWaitingForBite = false;
         isInMinigame = false;
+        isInCatchWindow = false;
 
         fishingGame.SetActive(false);
         playerAnimator.SetBool("isFishing", false);
-        timeTillCatch = 0f;
+        timeTillBite = 0f;
+        catchWindowTimer = 0f;
     }
 
     public void FishingFailed()
@@ -100,8 +158,10 @@ public class PlayerFishing : MonoBehaviour
         isFishing = false;
         isWaitingForBite = false;
         isInMinigame = false;
+        isInCatchWindow = false;
 
         playerAnimator.SetBool("isFishing", false);
+        catchWindowTimer = 0f;
     }
 
     public void CaughtFish()
@@ -111,8 +171,10 @@ public class PlayerFishing : MonoBehaviour
         isFishing = false;
         isWaitingForBite = false;
         isInMinigame = false;
+        isInCatchWindow = false;
 
-        timeTillCatch = 0f;
+        timeTillBite = 0f;
+        catchWindowTimer = 0f;
 
         //Play Catch anim
         //playerAnimator.SetTrigger("CaughtFish");

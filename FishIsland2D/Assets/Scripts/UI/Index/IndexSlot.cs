@@ -57,6 +57,12 @@ public class IndexSlot : MonoBehaviour
     {
         var saveData = InventoryPage.Instance.currentSaveData;
 
+        if (saveData == null)
+        {
+            SetCaught(false);
+            return;
+        }
+
         bool isCaught = saveData.caughtFishIDs.Contains(currentFish.fishID);
 
         SetCaught(isCaught);
