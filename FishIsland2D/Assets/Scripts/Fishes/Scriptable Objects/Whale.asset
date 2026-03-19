@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1876378e433f0642acd313dadbe1202, type: 3}
-  m_Name: Rainbow Fish
+  m_Name: Whale
   m_EditorClassIdentifier: 
-  fishName: Rainbow Fish
-  fishID: rainbow_fish
+  fishName: Whale
+  fishID: whale
   fishPrefab: {fileID: 0}
-  fishSprite: {fileID: 1934122152147869704, guid: 619cfd0375a5ca34a81f15e0e4534ae1, type: 3}
-  fishTier: 3
+  fishSprite: {fileID: 21300000, guid: 6f06d31a7cbb66045aa02e0b5661f128, type: 3}
+  fishTier: 4
   catchChance: 10
-  fishMaxSize: 20
-  fishMinSize: 7
-  sellPrice: 40
+  fishMaxSize: 300
+  fishMinSize: 250
+  sellPrice: 100

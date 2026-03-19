@@ -9,7 +9,7 @@ public class FishScaleHelper : MonoBehaviour
 
         float spriteScale = (caughtFish.size / referenceCm) * referenceScale;
 
-        float minScale = 0.25f; //Smallest possible scale for the sprite
+        float minScale = 0.4f; //Smallest possible scale for the sprite
         float maxScale = 9f; //Biggest possible scale for the sprite
 
         spriteScale = Mathf.Clamp(spriteScale, minScale, maxScale);
