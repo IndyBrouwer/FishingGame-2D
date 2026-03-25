@@ -7,6 +7,7 @@ public class PlayerFishing : MonoBehaviour
     [Header("General Settings")]
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Transform bobber;
+    [SerializeField] private Transform waterSplash;
 
     [Header("Bite Timing Settings")]
     [SerializeField] private float minBiteDelay = 2f;
@@ -131,6 +132,11 @@ public class PlayerFishing : MonoBehaviour
         }
     }
 
+    public void StartWaterSplashEffect()
+    {
+        waterSplash.gameObject.SetActive(true);
+    }
+
     public void StartMiniGame()
     {
         isInMinigame = true;
@@ -147,6 +153,8 @@ public class PlayerFishing : MonoBehaviour
         isInMinigame = false;
         isInCatchWindow = false;
 
+        waterSplash.gameObject.SetActive(false);
+
         fishingGame.SetActive(false);
         playerAnimator.SetBool("isFishing", false);
         timeTillBite = 0f;
@@ -159,6 +167,8 @@ public class PlayerFishing : MonoBehaviour
         isWaitingForBite = false;
         isInMinigame = false;
         isInCatchWindow = false;
+
+        waterSplash.gameObject.SetActive(false);
 
         playerAnimator.SetBool("isFishing", false);
         catchWindowTimer = 0f;
@@ -173,11 +183,10 @@ public class PlayerFishing : MonoBehaviour
         isInMinigame = false;
         isInCatchWindow = false;
 
+        waterSplash.gameObject.SetActive(false);
+
         timeTillBite = 0f;
         catchWindowTimer = 0f;
-
-        //Play Catch anim
-        //playerAnimator.SetTrigger("CaughtFish");
 
         playerCatchedScript.DecideFish();
     }

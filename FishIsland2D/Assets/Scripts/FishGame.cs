@@ -42,6 +42,9 @@ public class FishGame : MonoBehaviour
         //Disable all menus while fishing game is active
         GetComponent<DisableMenus>().DisableAllMenus();
 
+        //Enable water splash effect
+        playerFishingScript.StartWaterSplashEffect();
+
         startedPlaying = false;
 
         //Reset waiting state
