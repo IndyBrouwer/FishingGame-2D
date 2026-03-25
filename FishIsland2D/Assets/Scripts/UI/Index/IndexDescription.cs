@@ -10,7 +10,7 @@ public class IndexDescription : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI rarityText;
 
-    public void ShowFishInfo(FishData currentFish, Color caughtColor)
+    public void ShowFishInfo(FishData currentFish, Color caughtColor, string displayText)
     {
         //Set image
         fishIcon.sprite = currentFish.fishSprite;
@@ -20,7 +20,7 @@ public class IndexDescription : MonoBehaviour
         fishIcon.color = caughtColor;
 
         //Set written info
-        nameText.text = currentFish.fishName;
+        nameText.text = displayText;
         rarityText.text = currentFish.fishTier.ToString();
     }
 }

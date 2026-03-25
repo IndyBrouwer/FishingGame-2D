@@ -45,6 +45,9 @@ public class FishGame : MonoBehaviour
         //Enable water splash effect
         playerFishingScript.StartWaterSplashEffect();
 
+        //Hide click text
+        playerFishingScript.clickText.gameObject.SetActive(false);
+
         startedPlaying = false;
 
         //Reset waiting state

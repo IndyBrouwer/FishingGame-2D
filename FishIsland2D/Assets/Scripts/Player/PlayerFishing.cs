@@ -30,6 +30,7 @@ public class PlayerFishing : MonoBehaviour
     private SpriteRenderer slotSprite;
     [SerializeField] private Sprite fishBiteSprite;
     [SerializeField] private GameObject fishingGame;
+    public GameObject clickText;
 
     [Header("Other Scripts")]
     [SerializeField] private PlayerCatched playerCatchedScript;
@@ -96,6 +97,9 @@ public class PlayerFishing : MonoBehaviour
                 slotSprite.transform.localScale = new Vector3(1f, 1f, 1f);
                 //Change caughtslot to an exclamation mark to indicate a bite of a fish
                 slotSprite.sprite = fishBiteSprite;
+
+                //Show CLICK text
+                clickText.SetActive(true);
             }
         }
     }
@@ -153,6 +157,7 @@ public class PlayerFishing : MonoBehaviour
         isInMinigame = false;
         isInCatchWindow = false;
 
+        clickText.SetActive(false);
         waterSplash.gameObject.SetActive(false);
 
         fishingGame.SetActive(false);
@@ -168,6 +173,7 @@ public class PlayerFishing : MonoBehaviour
         isInMinigame = false;
         isInCatchWindow = false;
 
+        clickText.SetActive(false);
         waterSplash.gameObject.SetActive(false);
 
         playerAnimator.SetBool("isFishing", false);

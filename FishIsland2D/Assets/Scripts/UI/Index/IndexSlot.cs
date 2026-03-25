@@ -9,6 +9,7 @@ public class IndexSlot : MonoBehaviour
     [SerializeField] private IndexDescription indexDescriptionScript;
 
     private Color fishColor;
+    private string displayName;
 
     private void OnEnable()
     {
@@ -29,15 +30,19 @@ public class IndexSlot : MonoBehaviour
         {
             fishColor = Color.white;
             fishColor.a = 1f;
+
+            displayName = currentFish.fishName;
         }
         else
         {
             fishColor = Color.black;
             fishColor.a = 1f;
+
+            displayName = "???";
         }
 
         //Send fish scriptable object and the picked color based on state to IndexDescription to display
-        indexDescriptionScript.ShowFishInfo(currentFish, fishColor);
+        indexDescriptionScript.ShowFishInfo(currentFish, fishColor, displayName);
     }
 
     //Get child it's image component and change color to black if the fish is not caught yet, and white if the fish is caught
